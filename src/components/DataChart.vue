@@ -88,7 +88,14 @@ export default {
       })
     }
   },
-
+  // watch: {
+  //   'store.cards': {
+  //     handler() {
+  //       this.setChartData(this.store.cards)
+  //     },
+  //     deep: true
+  //   }
+  // },
   created() {
     if (this.store.cards.length > 0) {
       this.setChartData(this.store.cards)
