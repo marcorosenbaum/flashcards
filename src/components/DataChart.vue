@@ -1,9 +1,12 @@
 <template>
-  <line-chart id="my-chart-id" :options="chartOptions" :data="chartData" />
+  <div :key="rerenderChart">
+    <line-chart id="my-chart-id" :options="chartOptions" :data="chartData" />
+  </div>
 </template>
 
 <script>
 import useUserStore from '@/stores/users.js'
+
 import { Line as LineChart } from 'vue-chartjs'
 import {
   Chart as ChartJS,
@@ -25,9 +28,12 @@ export default {
       store: useUserStore()
     }
   },
+
   components: { LineChart },
+
   data() {
     return {
+      rerenderChart: false,
       chartData: {
         labels: [],
         datasets: [
@@ -58,6 +64,7 @@ export default {
         const datesArray = []
         let currentDate = new Date(startDate)
 
+        // Issue with enddate at some point currentdate is bigger then enddate
         while (currentDate <= endDate) {
           const formattedDate = `${currentDate.getDate()}.${currentDate.getMonth() + 1}.${currentDate.getFullYear()}`
           datesArray.push(formattedDate)
@@ -69,8 +76,12 @@ export default {
 
       const startDate = new Date(cardsDates[0])
       const endDate = new Date()
+      //temporary solution to fix issue with while loop above
+      endDate.setDate(endDate.getDate() + 1)
+
       this.chartData.labels = getDatesArray(startDate, endDate)
 
+      let result = []
       let dataPoint = 0
       this.chartData.labels.forEach((date) => {
         cards.forEach((card) => {
@@ -84,21 +95,26 @@ export default {
             }
           }
         })
-        this.chartData.datasets[0].data.push(dataPoint)
+        // this.chartData.datasets[0].data.push(dataPoint)
+        result.push(dataPoint)
       })
+
+      return result
     }
   },
-  // watch: {
-  //   'store.cards': {
-  //     handler() {
-  //       this.setChartData(this.store.cards)
-  //     },
-  //     deep: true
-  //   }
-  // },
+  watch: {
+    'store.cards': {
+      handler() {
+        this.chartData.datasets[0].data = this.setChartData(this.store.cards)
+
+        this.rerenderChart = !this.rerenderChart
+      },
+      deep: true
+    }
+  },
   created() {
     if (this.store.cards.length > 0) {
-      this.setChartData(this.store.cards)
+      this.chartData.datasets[0].data = this.setChartData(this.store.cards)
     }
   }
 }

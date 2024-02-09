@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+
 import { auth, usersCollection } from '@/includes/firebase'
 import { updateDoc, deleteField } from 'firebase/firestore'
 
