@@ -1,7 +1,5 @@
 <template>
-  <div :key="rerenderChart">
-    <line-chart id="my-chart-id" :options="chartOptions" :data="chartData" />
-  </div>
+  <line-chart :key="rerenderChart" id="my-chart-id" :options="chartOptions" :data="chartData" />
 </template>
 
 <script>
@@ -95,7 +93,7 @@ export default {
             }
           }
         })
-        // this.chartData.datasets[0].data.push(dataPoint)
+
         result.push(dataPoint)
       })
 
