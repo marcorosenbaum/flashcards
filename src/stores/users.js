@@ -96,9 +96,10 @@ export default defineStore('users', {
       }
     },
 
-    updateCardInStore(inputCardText, inputCardCategory) {
+    updateCardInStore(inputCardHeader, inputCardText, inputCardCategory) {
       try {
         const cardToUpdate = this.cards.find((card) => card.cardId === this.cardToEdit.cardId)
+        cardToUpdate.cardHeader = inputCardHeader
         cardToUpdate.cardText = inputCardText
         cardToUpdate.category = inputCardCategory
       } catch (error) {
@@ -107,7 +108,7 @@ export default defineStore('users', {
       }
     },
 
-    async saveCardToFirebase(cardText, category, timestamp, cardId) {
+    async saveCardToFirebase(cardHeader, cardText, category, timestamp, cardId) {
       try {
         const docRef = usersCollection.doc(auth.currentUser.uid)
 
@@ -116,6 +117,7 @@ export default defineStore('users', {
           if (doc.exists) {
             await updateDoc(docRef, {
               [`cards.card${cardId ? cardId : this.totalCards}`]: {
+                cardHeader: cardHeader,
                 cardText: cardText,
                 category: category,
                 timestamp: timestamp,

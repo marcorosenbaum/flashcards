@@ -1,13 +1,13 @@
 <template>
   <hr />
 
-  <button class="border-2 border-black" @click="filterSelectionIsOpen = !filterSelectionIsOpen">
+  <button class="border border-gray-400" @click="filterSelectionIsOpen = !filterSelectionIsOpen">
     {{ filterSelectionIsOpen ? 'close filter' : 'open filter' }}
   </button>
 
   <div v-show="filterSelectionIsOpen">
-    <button class="border-2 border-black" @click="toggleAllNoneFilter(true)">select all</button>
-    <button class="border-2 border-black" @click="toggleAllNoneFilter(false)">select none</button>
+    <button class="border border-gray-400" @click="toggleAllNoneFilter(true)">select all</button>
+    <button class="border border-gray-400" @click="toggleAllNoneFilter(false)">select none</button>
 
     <div v-for="(value, category) in filter" :key="category">
       <input type="checkbox" :id="`filter-${category}`" v-model="filter[category]" />
@@ -17,10 +17,12 @@
     </div>
   </div>
   <ul>
-    <li v-for="card in filteredMemoryCards" :key="card.text">
-      {{ card.cardText }}<span class="text-green-500">{{ card.category }}</span>
-      <span @click="deleteCard(card)" class="text-red-500">DELETE</span
-      ><span @click="editCard(card)" class="text-blue-500">EDIT</span>
+    <li class="border border-gray-400" v-for="card in filteredMemoryCards" :key="card.cardHeader">
+      <span class="underline">{{ card.cardHeader }}</span>
+      <p>{{ card.cardText }}</p>
+      <span class="text-green-500">{{ card.category }}</span>
+      <span @click="deleteCard(card)" class="text-red-500">DELETE</span>
+      <span @click="editCard(card)" class="text-blue-500">EDIT</span>
     </li>
   </ul>
 </template>
