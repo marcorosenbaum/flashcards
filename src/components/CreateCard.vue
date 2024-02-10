@@ -125,9 +125,9 @@ export default {
         const timestamp = new Date().toISOString()
 
         if (Object.keys(this.store.cardToEdit).length === 0) {
-          this.store.totalCards++
-
           this.saveMemoryCard(timestamp)
+          this.store.totalCards = this.store.cards.length
+
           this.saveCardToFirebase(
             this.inputCardHeader,
             this.inputCardText,
@@ -166,12 +166,13 @@ export default {
     },
 
     saveMemoryCard(timestamp) {
+      this.store.totalCreatedCards++
       this.store.cards.push({
         cardHeader: this.inputCardHeader,
         cardText: this.inputCardText,
         category: this.inputCardCategory,
         timestamp: timestamp,
-        cardId: this.store.totalCards
+        cardId: this.store.totalCreatedCards
       })
     }
   }

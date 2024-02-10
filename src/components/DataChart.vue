@@ -36,11 +36,11 @@ export default {
         labels: [],
         datasets: [
           {
-            label: 'Learning progress',
+            label: 'total cards',
             data: [],
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
+            tension: 0.0
           }
         ]
       },
@@ -71,29 +71,26 @@ export default {
 
         return datesArray
       }
-
       const startDate = new Date(cardsDates[0])
       const endDate = new Date()
+
       //temporary solution to fix issue with while loop above
-      // endDate.setDate(endDate.getDate() + 1)
+      endDate.setDate(endDate.getDate() + 1)
 
       this.chartData.labels = getDatesArray(startDate, endDate)
 
       let result = []
       let dataPoint = 0
+
       this.chartData.labels.forEach((date) => {
         cards.forEach((card) => {
           const newTimestamp = new Date(card.timestamp)
-
           const formattedTimestamp = `${newTimestamp.getDate()}.${newTimestamp.getMonth() + 1}.${newTimestamp.getFullYear()}`
 
           if (formattedTimestamp == date) {
-            if (card.cardId > dataPoint) {
-              dataPoint = card.cardId
-            }
+            dataPoint++
           }
         })
-
         result.push(dataPoint)
       })
 
