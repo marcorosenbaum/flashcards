@@ -75,7 +75,7 @@ export default {
       const startDate = new Date(cardsDates[0])
       const endDate = new Date()
       //temporary solution to fix issue with while loop above
-      // endDate.setDate(endDate.getDate() + 1)
+      endDate.setDate(endDate.getDate() + 1)
 
       this.chartData.labels = getDatesArray(startDate, endDate)
 

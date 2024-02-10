@@ -9,7 +9,8 @@ export default defineStore('users', {
     userName: '',
     cards: [],
     categories: [],
-    totalCards: 0,
+    totalCards: 0, //??
+    totalCreatedCards: 0,
     cardInputOpen: false,
     cardToEdit: {}
   }),
@@ -27,7 +28,8 @@ export default defineStore('users', {
           country: values.country,
           cards: '',
           categories: '',
-          totalCards: 0
+          totalCards: 0,
+          totalCreatedCards: 0
         })
 
         await userCred.user.updateProfile({
@@ -56,6 +58,9 @@ export default defineStore('users', {
           const totalCards = doc.data().totalCards
           this.totalCards = totalCards
 
+          const totalCreatedCards = doc.data().totalCreatedCards
+          this.totalCreatedCards = totalCreatedCards
+
           const cards = doc.data().cards
           this.cards = Object.values(cards)
 
@@ -76,6 +81,7 @@ export default defineStore('users', {
         this.categories = []
         this.userLoggedIn = false
         this.totalCards = 0
+        this.totalCreatedCards = 0
         this.cardToEdit = {}
       } catch (error) {
         console.error('Error during signOut', error)
@@ -116,14 +122,15 @@ export default defineStore('users', {
           const doc = await docRef.get()
           if (doc.exists) {
             await updateDoc(docRef, {
-              [`cards.card${cardId ? cardId : this.totalCards}`]: {
+              [`cards.card${cardId ? cardId : this.totalCreatedCards}`]: {
                 cardHeader: cardHeader,
                 cardText: cardText,
                 category: category,
                 timestamp: timestamp,
-                cardId: cardId || this.totalCards
+                cardId: cardId || this.totalCreatedCards
               },
-              totalCards: this.totalCards
+              totalCards: this.totalCards,
+              totalCreatedCards: this.totalCreatedCards
             })
           }
         } catch (error) {
@@ -145,12 +152,14 @@ export default defineStore('users', {
 
         if (doc.exists) {
           await updateDoc(docRef, {
-            [`cards.card${card.cardId}`]: deleteField()
+            [`cards.card${card.cardId}`]: deleteField(),
+            totalCards: this.totalCards - 1
           })
           const doc = await docRef.get()
           const cards = doc.data().cards
 
           this.cards = Object.values(cards)
+          this.totalCards = this.cards.length
         }
       } catch (error) {
         console.error('Error during deleteCardToFIrebase', error)
