@@ -15,12 +15,26 @@
         {{ category }}
       </label>
     </div>
+
+    <div class="bg-green-100">
+      <button @click="renderFilteredMemoryCards()">filter by date</button>
+
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" v-model="filterStartDate" />
+
+      <label for="endDate">End Date:</label>
+      <input type="date" id="endDate" v-model="filterEndDate" />
+    </div>
   </div>
+
+  <hr />
+
   <ul>
     <li class="border border-gray-400" v-for="card in filteredMemoryCards" :key="card.cardHeader">
       <span class="underline">{{ card.cardHeader }}</span>
       <p>{{ card.cardText }}</p>
       <span class="text-green-500">{{ card.category }}</span>
+      <span class="text-purple-500">{{ card.timestamp }}</span>
       <span @click="deleteCard(card)" class="text-red-500">DELETE</span>
       <span @click="editCard(card)" class="text-blue-500">EDIT</span>
     </li>
@@ -39,6 +53,9 @@ export default {
   },
   data() {
     return {
+      check: [],
+      filterStartDate: '',
+      filterEndDate: '',
       filteredMemoryCards: [],
       filter: {},
       filterSelectionIsOpen: false
@@ -88,10 +105,24 @@ export default {
           selectedFilter.push(filter)
         }
       }
+      if (this.filterStartDate && this.filterEndDate) {
+        this.filteredMemoryCards = this.store.cards.filter((card) => {
+          const formattedStartDate = new Date(this.filterStartDate)
+          const formattedEndDate = new Date(this.filterEndDate)
+          formattedEndDate.setDate(formattedEndDate.getDate() + 1)
 
-      this.filteredMemoryCards = this.store.cards.filter((card) =>
-        selectedFilter.includes(card.category)
-      )
+          if (
+            selectedFilter.includes(card.category) &&
+            card.timestamp >= formattedStartDate.toISOString() &&
+            card.timestamp <= formattedEndDate.toISOString()
+          ) {
+            return card
+          }
+        })
+      } else
+        this.filteredMemoryCards = this.store.cards.filter((card) =>
+          selectedFilter.includes(card.category)
+        )
     }
   },
 
