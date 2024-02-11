@@ -14,10 +14,20 @@ import {
   LineElement,
   PointElement,
   CategoryScale,
-  LinearScale
+  LinearScale,
+  Filler
 } from 'chart.js'
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
+ChartJS.register(
+  Filler,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+)
 
 export default {
   name: 'DataChart',
@@ -39,8 +49,8 @@ export default {
             label: 'total cards',
             data: [],
             fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.0
+            borderColor: '#36A2EB',
+            backgroundColor: '#9BD0F5'
           }
         ]
       },
