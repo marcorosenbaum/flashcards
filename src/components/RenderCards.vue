@@ -34,13 +34,16 @@
       class="border border-gray-400 flex justify-between"
       v-for="card in filteredMemoryCards"
       :key="card.cardHeader"
+      @click="showCard(card.cardId)"
     >
-      <div>
-        <span class="underline">{{ card.cardHeader }}</span>
-        <p>{{ card.cardText }}</p>
-        <span class="text-green-500">{{ card.category }}</span>
-        <span class="text-purple-500">{{ card.timestamp }}</span>
-      </div>
+      <router-link :to="{ name: 'cardview', params: { id: card.cardId } }">
+        <div>
+          <span class="underline">{{ card.cardHeader }}</span>
+          <p>{{ card.cardText }}</p>
+          <span class="text-green-500">{{ card.category }}</span>
+          <span class="text-purple-500">{{ card.cardId }}</span>
+        </div>
+      </router-link>
       <div class="flex-col">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -124,6 +127,9 @@ export default {
   },
 
   methods: {
+    showCard(card) {
+      console.log(card)
+    },
     editCard(currentCard) {
       this.store.cardInputOpen = true
       this.store.cardToEdit = currentCard

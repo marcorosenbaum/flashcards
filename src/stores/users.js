@@ -9,7 +9,7 @@ export default defineStore('users', {
     userName: '',
     cards: [],
     categories: [],
-    totalCards: 0, //??
+    totalCards: 0,
     totalCreatedCards: 0,
     cardInputOpen: false,
     cardToEdit: {}
