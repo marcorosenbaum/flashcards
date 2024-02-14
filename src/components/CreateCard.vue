@@ -1,6 +1,6 @@
 <template>
   <button
-    v-show="!store.cardInputOpen"
+    v-show="enableCreateCard"
     class="border-2 border-black m-2"
     @click="store.cardInputOpen = true"
   >
@@ -96,7 +96,17 @@ export default {
       }
     }
   },
-
+  computed: {
+    enableCreateCard() {
+      if (
+        !this.store.cardInputOpen &&
+        Object.keys(this.store.cardToEdit).length === 0 &&
+        this.$route.name === 'home'
+      ) {
+        return true
+      } else return false
+    }
+  },
   methods: {
     ...mapActions(useUserStore, ['saveCardToFirebase', 'updateCardInStore']),
 

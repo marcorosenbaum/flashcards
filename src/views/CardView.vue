@@ -1,15 +1,9 @@
 <template>
-  <create-card v-if="editCard"></create-card>
-  <router-link :to="{ name: 'home' }">
-    <div>click HERE to go back</div>
+  <router-link v-show="Object.keys(store.cardToEdit).length === 0" :to="{ name: 'home' }">
+    click HERE to go back
   </router-link>
-  <!-- <section>
-    <h1>{{ currentCard.cardHeader }}</h1>
-    <p>{{ currentCard.cardText }}</p>
-    <p>category: {{ currentCard.category }}</p>
-    <p>Id: {{ currentCard.cardId }}</p>
-    <p>saved on: {{ currentCard.timestamp }}</p>
-  </section> -->
+
+  <create-card></create-card>
 
   <section class="border border-gray-400 flex justify-between">
     <div>
@@ -31,7 +25,7 @@
         stroke-linecap="round"
         stroke-linejoin="round"
         class="lucide lucide-trash-2"
-        @click="deleteCard(card)"
+        @click="deleteCard(currentCard)"
       >
         <path d="M3 6h18" />
         <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
@@ -90,6 +84,15 @@ export default {
       this.editCard = true
       this.store.cardInputOpen = true
       this.store.cardToEdit = currentCard
+    },
+    deleteCard(card) {
+      if (
+        window.confirm(
+          "Are you sure you want to delete this card? It can't be restored afterwards."
+        )
+      ) {
+        this.store.deleteCardToFirebase(card)
+      }
     }
   }
 }
