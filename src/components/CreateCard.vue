@@ -18,7 +18,7 @@
     <textarea
       id="card-text"
       placeholder="write down some text"
-      class="w-full h-20 border border-gray-400"
+      class="w-full h-40 border border-gray-400"
       v-model="inputCardText"
     ></textarea>
 

@@ -8,7 +8,7 @@
   <section class="border border-gray-400 flex justify-between">
     <div>
       <span class="underline">{{ currentCard.cardHeader }}</span>
-      <p>{{ currentCard.cardText }}</p>
+      <div style="white-space: pre-line">{{ currentCard.cardText }}</div>
       <span class="text-green-500">{{ currentCard.category }}</span>
       <span class="text-purple-500">{{ currentCard.cardId }}</span>
     </div>

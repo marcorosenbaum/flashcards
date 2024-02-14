@@ -38,7 +38,9 @@
       <router-link :to="{ name: 'cardview', params: { id: card.cardId } }">
         <div>
           <span class="underline">{{ card.cardHeader }}</span>
-          <p class="max-h-20 overflow-scroll">{{ card.cardText }}</p>
+          <div style="white-space: pre-line" class="max-h-20 overflow-scroll">
+            {{ card.cardText }}
+          </div>
           <span class="text-green-500">{{ card.category }}</span>
           <span class="text-purple-500">{{ card.cardId }}</span>
         </div>
