@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 
 import { auth, usersCollection } from '@/includes/firebase'
 import { updateDoc, deleteField } from 'firebase/firestore'
+import router from '@/router'
 
 export default defineStore('users', {
   state: () => ({
@@ -9,7 +10,7 @@ export default defineStore('users', {
     userName: '',
     cards: [],
     categories: [],
-    totalCards: 0, //??
+    totalCards: 0,
     totalCreatedCards: 0,
     cardInputOpen: false,
     cardToEdit: {}
@@ -161,6 +162,7 @@ export default defineStore('users', {
           this.cards = Object.values(cards)
           this.totalCards = this.cards.length
         }
+        router.push({ name: 'home' })
       } catch (error) {
         console.error('Error during deleteCardToFIrebase', error)
         window.alert('Sorry, an error occured. Please try again.')
