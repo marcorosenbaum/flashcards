@@ -43,6 +43,7 @@
           </div>
           <span class="text-green-500">{{ card.category }}</span>
           <span class="text-purple-500">{{ card.cardId }}</span>
+          <span class="text-blue-500">{{ card.timestamp }}</span>
         </div>
       </router-link>
     </li>
@@ -127,9 +128,12 @@ export default {
         this.filteredMemoryCards = this.store.cards.filter((card) =>
           selectedFilter.includes(card.category)
         )
+
+      this.filteredMemoryCards.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
     }
   },
 
+  // is this right? i want it only to get rendered when first created
   beforeMount() {
     this.store.categories.forEach((element) => (this.filter[element] = true))
     this.renderFilteredMemoryCards()
