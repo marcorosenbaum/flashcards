@@ -11,6 +11,7 @@
       <div style="white-space: pre-line">{{ currentCard.cardText }}</div>
       <span class="text-green-500">{{ currentCard.category }}</span>
       <span class="text-purple-500">{{ currentCard.cardId }}</span>
+      <span class="text-blue-500">{{ currentCard.timestamp }}</span>
     </div>
 
     <div class="flex-col">
