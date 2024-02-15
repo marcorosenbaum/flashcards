@@ -1,6 +1,6 @@
 <template>
   <hr />
-
+  <h1></h1>
   <button class="border border-gray-400" @click="filterSelectionIsOpen = !filterSelectionIsOpen">
     {{ filterSelectionIsOpen ? 'close filter' : 'open filter' }}
   </button>
@@ -39,7 +39,7 @@
 
   <ul>
     <li
-      class="border border-gray-400 bg-light-navy flex justify-between"
+      class="border border-gray-400 flex justify-between"
       v-for="card in filteredMemoryCards"
       :key="card.cardId"
     >
