@@ -17,13 +17,12 @@
     </div>
 
     <div class="bg-green-100">
-      <button @click="renderFilteredMemoryCards()">filter by date</button>
-
       <label for="startDate">Start Date:</label>
       <input type="date" id="startDate" v-model="filterStartDate" />
 
       <label for="endDate">End Date:</label>
       <input type="date" id="endDate" v-model="filterEndDate" />
+      <button @click="renderFilteredMemoryCards()">set date</button>
     </div>
   </div>
 

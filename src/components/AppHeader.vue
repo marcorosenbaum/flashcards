@@ -14,10 +14,10 @@
               >Login / Register</a
             >
           </li>
-          <template v-else
-            ><li>
+          <template v-else>
+            <!-- <li>
               <a class="px-2 text-white" href="#">Manage</a>
-            </li>
+            </li> -->
             <li>
               <a class="px-2 text-white" href="#" @click.prevent="usersStore.signOut">Logout</a>
             </li>
