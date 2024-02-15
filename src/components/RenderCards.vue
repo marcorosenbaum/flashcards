@@ -6,14 +6,21 @@
   </button>
 
   <div v-show="filterSelectionIsOpen">
-    <button class="border border-gray-400" @click="toggleAllNoneFilter(true)">select all</button>
-    <button class="border border-gray-400" @click="toggleAllNoneFilter(false)">select none</button>
+    <button class="border border-gray-400" @click="showCategories = !showCategories">
+      {{ showCategories ? 'hide categories' : 'show categories' }}
+    </button>
+    <div v-show="showCategories">
+      <button class="border border-gray-400" @click="toggleAllNoneFilter(true)">select all</button>
+      <button class="border border-gray-400" @click="toggleAllNoneFilter(false)">
+        select none
+      </button>
 
-    <div v-for="(value, category) in filter" :key="category">
-      <input type="checkbox" :id="`filter-${category}`" v-model="filter[category]" />
-      <label :for="`filter-${category}`">
-        {{ category }}
-      </label>
+      <div v-for="(value, category) in filter" :key="category">
+        <input type="checkbox" :id="`filter-${category}`" v-model="filter[category]" />
+        <label :for="`filter-${category}`">
+          {{ category }}
+        </label>
+      </div>
     </div>
 
     <div class="bg-green-100">
@@ -22,7 +29,9 @@
 
       <label for="endDate">End Date:</label>
       <input type="date" id="endDate" v-model="filterEndDate" />
-      <button @click="renderFilteredMemoryCards()">set date</button>
+      <button @click="filterStartDate && filterEndDate ? renderFilteredMemoryCards() : null">
+        set date
+      </button>
     </div>
   </div>
 
@@ -37,8 +46,10 @@
       <router-link :to="{ name: 'cardview', params: { id: card.cardId } }">
         <div>
           <span class="underline">{{ card.cardHeader }}</span>
-          <div style="white-space: pre-line" class="max-h-20 overflow-scroll">
-            {{ card.cardText }}
+          <div style="white-space: pre-line" class="text-ellipsis">
+            {{
+              card.cardText.length > 200 ? card.cardText.substring(0, 200) + '...' : card.cardText
+            }}
           </div>
           <span class="text-green-500">{{ card.category }}</span>
           <span class="text-purple-500">{{ card.cardId }}</span>
@@ -66,7 +77,8 @@ export default {
       filterEndDate: '',
       filteredMemoryCards: [],
       filter: {},
-      filterSelectionIsOpen: false
+      filterSelectionIsOpen: false,
+      showCategories: false
     }
   },
   watch: {
