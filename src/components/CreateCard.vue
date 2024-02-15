@@ -177,7 +177,7 @@ export default {
 
     saveMemoryCard(timestamp) {
       this.store.totalCreatedCards++
-      this.store.cards.push({
+      this.store.cards.unshift({
         cardHeader: this.inputCardHeader,
         cardText: this.inputCardText,
         category: this.inputCardCategory,

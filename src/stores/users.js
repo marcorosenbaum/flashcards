@@ -64,6 +64,7 @@ export default defineStore('users', {
 
           const cards = doc.data().cards
           this.cards = Object.values(cards)
+          this.cards.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
 
           const categories = doc.data().categories
           this.categories = Object.values(categories)

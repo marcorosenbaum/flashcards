@@ -128,7 +128,6 @@ export default {
         this.filteredMemoryCards = this.store.cards.filter((card) =>
           selectedFilter.includes(card.category)
         )
-
       this.filteredMemoryCards.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
     }
   },
