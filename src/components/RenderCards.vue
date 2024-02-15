@@ -39,7 +39,7 @@
 
   <ul>
     <li
-      class="border border-gray-400 flex justify-between"
+      class="border border-gray-400 bg-light-navy flex justify-between"
       v-for="card in filteredMemoryCards"
       :key="card.cardId"
     >
