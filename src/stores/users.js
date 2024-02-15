@@ -85,6 +85,8 @@ export default defineStore('users', {
         this.totalCards = 0
         this.totalCreatedCards = 0
         this.cardToEdit = {}
+
+        router.push({ name: 'home' })
       } catch (error) {
         console.error('Error during signOut', error)
         window.alert('Sorry, an error occured. Please try again.')
