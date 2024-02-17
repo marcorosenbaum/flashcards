@@ -175,6 +175,7 @@ export default {
       this.store.cardInputOpen = false
     },
 
+    // include in onSave function
     saveMemoryCard(timestamp) {
       this.store.totalCreatedCards++
       this.store.cards.unshift({

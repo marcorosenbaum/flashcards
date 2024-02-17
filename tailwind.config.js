@@ -2,15 +2,18 @@
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    // colors: {
-    //   'light-navy': '#0C2D57',
-    //   'call-to-action': '#FC6736',
-    //   'light-pink': '#FFB0B0',
-    //   'light-grey': '#EFECEC'
-    // },
     extend: {
       borderColor: {
-        DEFAULT: '#1c1c1c'
+        DEFAULT: '#36A2EB'
+      },
+      colors: {
+        'light-navy': '#0d3262',
+        'call-to-action': '#FC6736',
+        'light-pink': '#FFB0B0',
+        'light-grey': '#EFECEC'
+      },
+      rounded: {
+        '4xl': '5rem'
       }
     }
   },

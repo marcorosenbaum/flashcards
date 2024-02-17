@@ -5,7 +5,7 @@
 
   <create-card></create-card>
 
-  <section class="border border-gray-400 flex justify-between">
+  <section class="border rounded-xl bg-light-navy flex justify-between">
     <div>
       <span class="underline">{{ currentCard.cardHeader }}</span>
       <div style="white-space: pre-line">{{ currentCard.cardText }}</div>

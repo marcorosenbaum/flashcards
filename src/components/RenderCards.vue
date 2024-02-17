@@ -39,14 +39,14 @@
 
   <ul>
     <li
-      class="border border-gray-400 flex justify-between"
+      class="border mt-10 rounded-xl bg-light-navy flex justify-between"
       v-for="card in filteredMemoryCards"
       :key="card.cardId"
     >
       <router-link :to="{ name: 'cardview', params: { id: card.cardId } }">
         <div>
           <span class="underline">{{ card.cardHeader }}</span>
-          <div style="white-space: pre-line" class="text-ellipsis">
+          <div style="white-space: pre-line">
             {{
               card.cardText.length > 200 ? card.cardText.substring(0, 200) + '...' : card.cardText
             }}
@@ -154,5 +154,9 @@ export default {
 <style scoped>
 * {
   margin: 0.5rem;
+}
+
+li {
+  margin-top: 1rem;
 }
 </style>

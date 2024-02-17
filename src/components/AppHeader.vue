@@ -1,9 +1,9 @@
 <template>
   <!-- Header -->
-  <header id="header" class="bg-gray-700">
+  <header id="header">
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
       <!-- App Name -->
-      <a class="text-red-500 font-bold uppercase text-2xl mr-4" href="#">Flashcards</a>
+      <a class="text-call-to-action font-bold uppercase text-2xl mr-4" href="#">Flashcards</a>
 
       <div class="flex flex-grow items-center">
         <!-- Primary Navigation -->
