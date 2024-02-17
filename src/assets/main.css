@@ -1,6 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #0a284e;
   color: #d5d5d5;
+  margin: 0rem 1rem;
 }
 
 a {

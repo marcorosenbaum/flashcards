@@ -1,6 +1,6 @@
 <template>
   <!-- Header -->
-  <header id="header">
+  <header id="header" class="border-b">
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
       <!-- App Name -->
       <a class="text-call-to-action font-bold uppercase text-2xl mr-4" href="#">Flashcards</a>

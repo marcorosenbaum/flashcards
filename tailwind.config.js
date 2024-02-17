@@ -10,7 +10,8 @@ export default {
         'light-navy': '#0d3262',
         'call-to-action': '#FC6736',
         'light-pink': '#FFB0B0',
-        'light-grey': '#EFECEC'
+        'light-grey': '#EFECEC',
+        'light-blue': '#36A2EB'
       },
       rounded: {
         '4xl': '5rem'

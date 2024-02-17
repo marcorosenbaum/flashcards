@@ -94,12 +94,12 @@ export default defineStore('users', {
     },
 
     // refactor need
-    async saveCategoriesToFirebase(categories) {
+    async saveCategoriesToFirebase() {
       try {
         const docRef = usersCollection.doc(auth.currentUser.uid)
 
         await updateDoc(docRef, {
-          categories: categories
+          categories: this.categories
         })
       } catch (error) {
         console.error('Error during saveCategoriesToFirebase', error)
