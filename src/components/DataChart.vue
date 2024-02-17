@@ -68,11 +68,32 @@ export default {
       chartOptions: {
         responsive: true,
         maintainAspectRatio: true,
+        scales: {
+          y: {
+            ticks: {
+              color: '#d5d5d5'
+            },
+            grid: {
+              color: '#404040',
+              lineWidth: 0.5
+            }
+          },
+          x: {
+            ticks: {
+              color: '#d5d5d5'
+            },
+            grid: {
+              color: '#404040',
+              lineWidth: 0.5
+            }
+          }
+        },
+
         plugins: {
           legend: {
             display: true,
             labels: {
-              color: '#d5d5d5' // Set label color to currentColor
+              color: '#d5d5d5'
             }
           }
         }
