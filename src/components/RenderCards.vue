@@ -1,7 +1,5 @@
 <template>
-  <hr />
-  <h1></h1>
-  <button class="border border-gray-400" @click="filterSelectionIsOpen = !filterSelectionIsOpen">
+  <button @click="filterSelectionIsOpen = !filterSelectionIsOpen">
     {{ filterSelectionIsOpen ? 'close filter' : 'open filter' }}
   </button>
 
@@ -34,8 +32,6 @@
       </button>
     </div>
   </div>
-
-  <hr />
 
   <ul>
     <li
@@ -153,7 +149,7 @@ export default {
 
 <style scoped>
 * {
-  margin: 0.5rem;
+  padding: 0.5rem;
 }
 
 li {

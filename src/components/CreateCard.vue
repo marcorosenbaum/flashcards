@@ -1,9 +1,5 @@
 <template>
-  <button
-    v-show="enableCreateCard"
-    class="border-2 border-black m-2"
-    @click="store.cardInputOpen = true"
-  >
+  <button v-show="enableCreateCard" class="m-2" @click="store.cardInputOpen = true">
     Create card
   </button>
 
@@ -12,13 +8,13 @@
       type="text"
       id="card-header"
       placeholder="card header"
-      class="border text-black"
+      class="border rounded-xl bg-light-navy focus:outline-double"
       v-model="inputCardHeader"
     />
     <textarea
       id="card-text"
       placeholder="write down some text"
-      class="w-full h-40 border text-black"
+      class="w-full h-40 border rounded-xl bg-light-navy focus:outline-double"
       v-model="inputCardText"
     ></textarea>
 
@@ -126,8 +122,7 @@ export default {
         this.createCategory = false
         this.showCategories = false
 
-        // refactore needed, dont get the data from the store to send it to the store :s
-        this.store.saveCategoriesToFirebase(this.store.categories)
+        this.store.saveCategoriesToFirebase()
       }
     },
 
@@ -178,6 +173,7 @@ export default {
 
 <style scoped>
 * {
-  margin: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
 }
 </style>

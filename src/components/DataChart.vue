@@ -1,5 +1,12 @@
 <template>
-  <line-chart :key="rerenderChart" id="my-chart-id" :options="chartOptions" :data="chartData" />
+  <line-chart
+    class="m-4"
+    :key="rerenderChart"
+    id="my-chart-id"
+    :options="chartOptions"
+    :data="chartData"
+  />
+  <hr />
 </template>
 
 <script>
@@ -9,6 +16,7 @@ import { Line as LineChart } from 'vue-chartjs'
 import {
   Chart as ChartJS,
   Title,
+  Colors,
   Tooltip,
   Legend,
   LineElement,
@@ -20,6 +28,7 @@ import {
 
 ChartJS.register(
   Filler,
+  Colors,
   CategoryScale,
   LinearScale,
   PointElement,
@@ -44,6 +53,8 @@ export default {
       rerenderChart: false,
       chartData: {
         labels: [],
+        color: '#d5d5d5',
+
         datasets: [
           {
             label: 'total cards',
@@ -56,7 +67,15 @@ export default {
       },
       chartOptions: {
         responsive: true,
-        maintainAspectRatio: true
+        maintainAspectRatio: true,
+        plugins: {
+          legend: {
+            display: true,
+            labels: {
+              color: '#d5d5d5' // Set label color to currentColor
+            }
+          }
+        }
       }
     }
   },
