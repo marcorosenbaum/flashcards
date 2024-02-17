@@ -12,13 +12,13 @@
       type="text"
       id="card-header"
       placeholder="card header"
-      class="border border-gray-400"
+      class="border text-black"
       v-model="inputCardHeader"
     />
     <textarea
       id="card-text"
       placeholder="write down some text"
-      class="w-full h-40 border border-gray-400"
+      class="w-full h-40 border text-black"
       v-model="inputCardText"
     ></textarea>
 
@@ -126,6 +126,7 @@ export default {
         this.createCategory = false
         this.showCategories = false
 
+        // refactore needed, dont get the data from the store to send it to the store :s
         this.store.saveCategoriesToFirebase(this.store.categories)
       }
     },
@@ -135,10 +136,7 @@ export default {
         const timestamp = new Date().toISOString()
 
         if (Object.keys(this.store.cardToEdit).length === 0) {
-          this.saveMemoryCard(timestamp)
-          this.store.totalCards = this.store.cards.length
-
-          this.saveCardToFirebase(
+          this.store.createCard(
             this.inputCardHeader,
             this.inputCardText,
             this.inputCardCategory,
@@ -173,18 +171,6 @@ export default {
       this.inputCardCategory = ''
       this.store.cardToEdit = {}
       this.store.cardInputOpen = false
-    },
-
-    // include in onSave function
-    saveMemoryCard(timestamp) {
-      this.store.totalCreatedCards++
-      this.store.cards.unshift({
-        cardHeader: this.inputCardHeader,
-        cardText: this.inputCardText,
-        category: this.inputCardCategory,
-        timestamp: timestamp,
-        cardId: this.store.totalCreatedCards
-      })
     }
   }
 }

@@ -93,6 +93,7 @@ export default defineStore('users', {
       }
     },
 
+    // refactor need
     async saveCategoriesToFirebase(categories) {
       try {
         const docRef = usersCollection.doc(auth.currentUser.uid)
@@ -106,16 +107,26 @@ export default defineStore('users', {
       }
     },
 
-    updateCardInStore(inputCardHeader, inputCardText, inputCardCategory) {
-      try {
-        const cardToUpdate = this.cards.find((card) => card.cardId === this.cardToEdit.cardId)
-        cardToUpdate.cardHeader = inputCardHeader
-        cardToUpdate.cardText = inputCardText
-        cardToUpdate.category = inputCardCategory
-      } catch (error) {
-        console.error('Error during updateCardInStore', error)
-        window.alert('Sorry, an error occured. Please try again.')
+    createCard(cardHeader, cardText, category, timestamp) {
+      this.totalCreatedCards++
+
+      class Card {
+        constructor(cardHeader, cardText, category, timestamp, cardId) {
+          this.cardHeader = cardHeader
+          this.cardText = cardText
+          this.category = category
+          this.timestamp = timestamp
+          this.cardId = cardId
+        }
       }
+
+      this.cards.unshift(
+        new Card(cardHeader, cardText, category, timestamp, this.totalCreatedCards)
+      )
+
+      this.totalCards = this.cards.length
+
+      this.saveCardToFirebase(cardHeader, cardText, category, timestamp)
     },
 
     async saveCardToFirebase(cardHeader, cardText, category, timestamp, cardId) {
@@ -144,6 +155,18 @@ export default defineStore('users', {
         this.cardToEdit = {}
       } catch (error) {
         console.error('Error during saveCardToFirebase', error)
+        window.alert('Sorry, an error occured. Please try again.')
+      }
+    },
+
+    updateCardInStore(inputCardHeader, inputCardText, inputCardCategory) {
+      try {
+        const cardToUpdate = this.cards.find((card) => card.cardId === this.cardToEdit.cardId)
+        cardToUpdate.cardHeader = inputCardHeader
+        cardToUpdate.cardText = inputCardText
+        cardToUpdate.category = inputCardCategory
+      } catch (error) {
+        console.error('Error during updateCardInStore', error)
         window.alert('Sorry, an error occured. Please try again.')
       }
     },
