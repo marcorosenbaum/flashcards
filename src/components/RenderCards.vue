@@ -1,6 +1,6 @@
 <template>
   <button class="border-2 rounded-2xl" @click="filterSelectionIsOpen = !filterSelectionIsOpen">
-    {{ filterSelectionIsOpen ? 'close filter' : 'open filter' }}
+    {{ filterSelectionIsOpen ? 'close filter' : 'set filter' }}
   </button>
 
   <div v-show="filterSelectionIsOpen">
@@ -45,7 +45,7 @@
       <label for="endDate">End Date:</label>
       <input class="bg-light-navy border" type="date" id="endDate" v-model="filterEndDate" />
       <button
-        class="rounded-2xl border-2 ml-2"
+        class="rounded-2xl border-2 border-call-to-action ml-2"
         @click="filterStartDate && filterEndDate ? renderFilteredMemoryCards() : null"
       >
         set date
@@ -54,12 +54,14 @@
   </div>
 
   <ul>
-    <li
-      class="border mt-10 rounded-xl bg-light-navy flex justify-between"
+    <router-link
+      :to="{ name: 'cardview', params: { id: card.cardId } }"
       v-for="card in filteredMemoryCards"
       :key="card.cardId"
     >
-      <router-link :to="{ name: 'cardview', params: { id: card.cardId } }">
+      <li
+        class="border mt-10 rounded-xl bg-light-navy flex justify-between transition-transform hover:shadow-inner hover:shadow-blue-600"
+      >
         <div>
           <span class="underline text-xl">{{ card.cardHeader }}</span>
           <div style="white-space: pre-line">
@@ -71,8 +73,8 @@
           <span class="text-purple-500">{{ card.cardId }}</span>
           <span class="text-blue-500">{{ card.timestamp }}</span>
         </div>
-      </router-link>
-    </li>
+      </li>
+    </router-link>
   </ul>
 </template>
 
@@ -176,7 +178,7 @@ li {
   margin-top: 1rem;
 }
 
-/* input {
-  all: unset;
-} */
+button:hover {
+  scale: 1.05;
+}
 </style>

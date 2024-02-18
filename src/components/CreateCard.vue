@@ -1,11 +1,12 @@
 <template>
   <button
     v-show="enableCreateCard"
-    class="m-2 rounded-2xl text-black bg-call-to-action"
+    class="m-2 rounded-2xl border-2 border-call-to-action"
     @click="store.cardInputOpen = true"
   >
     Create card
   </button>
+  <br />
 
   <div v-show="store.cardInputOpen">
     <input
@@ -26,7 +27,7 @@
       <input
         type="text"
         placeholder="type in category name"
-        class="w-1/5 h-10 border border-gray-400"
+        class="w-1/5 h-10 border"
         v-model.lazy="inputCreateNewCategory"
       />
       <button @click="saveNewCategory()">save category</button>
@@ -54,7 +55,7 @@
           >create new category..</span
         >
         <li
-          class="border rounded-xl mr-2 inline"
+          class="border rounded-xl mr-2 w-fit"
           @click="setInputCardCategory(category)"
           v-for="category in store.categories"
           :key="category"
@@ -68,7 +69,7 @@
       <button
         v-show="inputCardText && inputCardCategory"
         v-on:click="onSave"
-        class="text-black bg-call-to-action rounded-2xl"
+        class="border-2 border-call-to-action rounded-2xl"
       >
         Save
       </button>
@@ -193,5 +194,9 @@ export default {
 * {
   margin-top: 0.5rem;
   padding: 0.25rem;
+}
+
+button:hover {
+  scale: 1.05;
 }
 </style>
