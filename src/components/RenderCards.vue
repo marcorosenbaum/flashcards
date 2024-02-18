@@ -60,7 +60,7 @@
       :key="card.cardId"
     >
       <li
-        class="border mt-10 rounded-xl bg-light-navy flex justify-between transition-transform hover:shadow-inner hover:shadow-blue-600"
+        class="border mt-10 rounded-xl bg-light-navy flex justify-between transform duration-300 hover:scale-[101%] hover:shadow-around hover:shadow-blue-600"
       >
         <div>
           <span class="underline text-xl">{{ card.cardHeader }}</span>

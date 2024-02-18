@@ -1,7 +1,7 @@
 <template>
   <button
     v-show="enableCreateCard"
-    class="m-2 rounded-2xl border-2 border-call-to-action"
+    class="m-2 rounded-2xl border-2 border-call-to-action shadow-sm shadow-call-to-action text-call-to-action"
     @click="store.cardInputOpen = true"
   >
     Create card
@@ -34,7 +34,7 @@
     </div>
 
     <button
-      class="border rounded-2xl block bg-light-navy"
+      class="border text-gray-400 rounded-2xl block bg-light-navy"
       v-show="!inputCardCategory && !createCategory"
       @click="showCategories = true"
     >
