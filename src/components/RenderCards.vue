@@ -1,33 +1,53 @@
 <template>
-  <button @click="filterSelectionIsOpen = !filterSelectionIsOpen">
+  <button class="border-2 rounded-2xl" @click="filterSelectionIsOpen = !filterSelectionIsOpen">
     {{ filterSelectionIsOpen ? 'close filter' : 'open filter' }}
   </button>
 
   <div v-show="filterSelectionIsOpen">
-    <button class="border border-gray-400" @click="showCategories = !showCategories">
+    <button class="border-2 rounded-2xl" @click="showCategories = !showCategories">
       {{ showCategories ? 'hide categories' : 'show categories' }}
     </button>
+    <button
+      v-show="showCategories"
+      class="border-2 rounded-2xl ml-2"
+      @click="toggleAllNoneFilter(true)"
+    >
+      select all
+    </button>
+    <button
+      v-show="showCategories"
+      class="border-2 rounded-2xl ml-2"
+      @click="toggleAllNoneFilter(false)"
+    >
+      select none
+    </button>
     <div v-show="showCategories">
-      <button class="border border-gray-400" @click="toggleAllNoneFilter(true)">select all</button>
-      <button class="border border-gray-400" @click="toggleAllNoneFilter(false)">
-        select none
-      </button>
-
       <div v-for="(value, category) in filter" :key="category">
-        <input type="checkbox" :id="`filter-${category}`" v-model="filter[category]" />
-        <label :for="`filter-${category}`">
+        <input
+          class="reset-input"
+          type="checkbox"
+          :id="`filter-${category}`"
+          v-model="filter[category]"
+        />
+        <label
+          :for="`filter-${category}`"
+          :class="{ 'border-2 rounded-xl bg-blue-600': filter[category] }"
+        >
           {{ category }}
         </label>
       </div>
     </div>
 
-    <div class="bg-green-100">
+    <div class="">
       <label for="startDate">Start Date:</label>
-      <input type="date" id="startDate" v-model="filterStartDate" />
+      <input class="bg-light-navy border" type="date" id="startDate" v-model="filterStartDate" />
 
       <label for="endDate">End Date:</label>
-      <input type="date" id="endDate" v-model="filterEndDate" />
-      <button @click="filterStartDate && filterEndDate ? renderFilteredMemoryCards() : null">
+      <input class="bg-light-navy border" type="date" id="endDate" v-model="filterEndDate" />
+      <button
+        class="rounded-2xl border-2 ml-2"
+        @click="filterStartDate && filterEndDate ? renderFilteredMemoryCards() : null"
+      >
         set date
       </button>
     </div>
@@ -41,7 +61,7 @@
     >
       <router-link :to="{ name: 'cardview', params: { id: card.cardId } }">
         <div>
-          <span class="underline">{{ card.cardHeader }}</span>
+          <span class="underline text-xl">{{ card.cardHeader }}</span>
           <div style="white-space: pre-line">
             {{
               card.cardText.length > 200 ? card.cardText.substring(0, 200) + '...' : card.cardText
@@ -149,10 +169,14 @@ export default {
 
 <style scoped>
 * {
-  padding: 0.5rem;
+  padding: 0.25rem;
 }
 
 li {
   margin-top: 1rem;
 }
+
+/* input {
+  all: unset;
+} */
 </style>

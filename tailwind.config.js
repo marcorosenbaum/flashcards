@@ -18,5 +18,25 @@ export default {
       }
     }
   },
-  plugins: []
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.reset-input': {
+          appearance: 'none',
+          'background-color': 'transparent',
+          'border-width': '0',
+          color: 'inherit',
+          '&::placeholder': {
+            color: 'inherit'
+          },
+          '&:focus': {
+            outline: 'none',
+            ring: '0'
+          }
+        }
+      }
+
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }
+  ]
 }

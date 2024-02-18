@@ -1,5 +1,9 @@
 <template>
-  <button v-show="enableCreateCard" class="m-2" @click="store.cardInputOpen = true">
+  <button
+    v-show="enableCreateCard"
+    class="m-2 rounded-2xl text-black bg-call-to-action"
+    @click="store.cardInputOpen = true"
+  >
     Create card
   </button>
 
@@ -28,18 +32,29 @@
       <button @click="saveNewCategory()">save category</button>
     </div>
 
-    <button v-show="!inputCardCategory && !createCategory" @click="showCategories = true">
+    <button
+      class="border rounded-2xl block bg-light-navy"
+      v-show="!inputCardCategory && !createCategory"
+      @click="showCategories = true"
+    >
       select category
     </button>
 
-    <p @click="showCategories = true" v-show="inputCardCategory && !showCategories">
+    <p
+      class="rounded-xl border inline-block mr-2"
+      @click="showCategories = true"
+      v-show="inputCardCategory && !showCategories"
+    >
       {{ inputCardCategory }}
     </p>
 
     <div v-show="showCategories && !createCategory">
       <ul>
-        <li @click="createCategory = true">create new category..</li>
+        <span class="border rounded-xl mr-2" @click="createCategory = true"
+          >create new category..</span
+        >
         <li
+          class="border rounded-xl mr-2 inline"
           @click="setInputCardCategory(category)"
           v-for="category in store.categories"
           :key="category"
@@ -49,14 +64,17 @@
       </ul>
     </div>
 
-    <button
-      v-show="inputCardText && inputCardCategory"
-      v-on:click="onSave"
-      class="border border-gray-400"
-    >
-      Save
-    </button>
-    <button v-on:click="onCancel" class="border border-gray-400">Cancel</button>
+    <div>
+      <button
+        v-show="inputCardText && inputCardCategory"
+        v-on:click="onSave"
+        class="text-black bg-call-to-action rounded-2xl"
+      >
+        Save
+      </button>
+      <button v-on:click="onCancel" class="border-2 rounded-2xl ml-2">Cancel</button>
+    </div>
+    <hr />
   </div>
 </template>
 
@@ -174,6 +192,6 @@ export default {
 <style scoped>
 * {
   margin-top: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.25rem;
 }
 </style>
