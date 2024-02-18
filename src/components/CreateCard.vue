@@ -34,7 +34,7 @@
     </div>
 
     <button
-      class="border rounded-2xl block bg-light-navy"
+      class="border text-gray-400 rounded-2xl block bg-light-navy"
       v-show="!inputCardCategory && !createCategory"
       @click="showCategories = true"
     >
