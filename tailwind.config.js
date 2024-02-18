@@ -15,6 +15,10 @@ export default {
       },
       rounded: {
         '4xl': '5rem'
+      },
+      boxShadow: {
+        around: '0 0 5px 3px rgba(0, 0, 0, 0.2), 0 0 10px 1px rgba(0, 0, 0, 0.14)'
+        // Adjust the shadow values as needed to achieve the desired effect
       }
     }
   },
