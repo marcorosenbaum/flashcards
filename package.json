@@ -11,6 +11,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@tiptap/pm": "^2.2.3",
+    "@tiptap/starter-kit": "^2.2.3",
+    "@tiptap/vue-3": "^2.2.3",
     "@vee-validate/rules": "^4.12.4",
     "chart.js": "^4.4.1",
     "firebase": "^10.7.2",

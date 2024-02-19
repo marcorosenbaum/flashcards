@@ -64,11 +64,12 @@
       >
         <div>
           <span class="underline text-xl">{{ card.cardHeader }}</span>
-          <div style="white-space: pre-line">
-            {{
+          <div
+            style="white-space: pre-line"
+            v-html="
               card.cardText.length > 200 ? card.cardText.substring(0, 200) + '...' : card.cardText
-            }}
-          </div>
+            "
+          ></div>
           <span class="text-green-500">{{ card.category }}</span>
           <span class="text-purple-500">{{ card.cardId }}</span>
           <span class="text-blue-500">{{ card.timestamp }}</span>

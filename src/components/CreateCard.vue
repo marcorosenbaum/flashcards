@@ -16,12 +16,10 @@
       class="border rounded-xl bg-light-navy focus:outline-double"
       v-model="inputCardHeader"
     />
-    <textarea
-      id="card-text"
-      placeholder="write down some text"
-      class="w-full h-40 border rounded-xl bg-light-navy focus:outline-double"
-      v-model="inputCardText"
-    ></textarea>
+
+    <div>
+      <editor v-model="inputCardText" />
+    </div>
 
     <div v-show="createCategory">
       <input
@@ -82,14 +80,19 @@
 <script>
 import useUserStore from '@/stores/users.js'
 import { mapActions } from 'pinia'
+import Editor from '@/components/Editor.vue'
 
 export default {
   name: 'CreateCard',
+  components: {
+    Editor
+  },
   setup() {
     return {
       store: useUserStore()
     }
   },
+
   data() {
     return {
       inputCardHeader: '',
@@ -97,7 +100,9 @@ export default {
       inputCardCategory: '',
       showCategories: false,
       createCategory: false,
-      inputCreateNewCategory: ''
+      inputCreateNewCategory: '',
+      editor: null,
+      content: '<p>A Vue.js wrapper component for tiptap to use <code>v-model</code>.</p>'
     }
   },
   watch: {

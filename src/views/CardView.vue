@@ -8,7 +8,7 @@
   <section class="border rounded-xl bg-light-navy flex justify-between">
     <div>
       <span class="underline text-xl">{{ currentCard.cardHeader }}</span>
-      <div style="white-space: pre-line">{{ currentCard.cardText }}</div>
+      <div style="white-space: pre-line" v-html="currentCard.cardText"></div>
       <span class="text-green-500">{{ currentCard.category }}</span>
       <span class="text-purple-500">{{ currentCard.cardId }}</span>
       <span class="text-blue-500">{{ currentCard.timestamp }}</span>
