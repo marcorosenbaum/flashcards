@@ -16,7 +16,11 @@ export default {
             code: 'currentColor',
             strong: 'currentColor',
             blockquote: { color: 'currentColor' },
-            maxWidth: ''
+            maxWidth: '',
+            li: {
+              p: { margin: 0 }
+            },
+            p: { margin: 0 }
           }
         }
       }),

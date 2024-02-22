@@ -1,7 +1,7 @@
 <template>
   <button
     v-show="enableCreateCard"
-    class="m-2 rounded-2xl border-2 border-call-to-action shadow-sm shadow-call-to-action text-call-to-action"
+    class="my-2 rounded-2xl border-2 border-call-to-action shadow-sm shadow-call-to-action text-call-to-action"
     @click="store.cardInputOpen = true"
   >
     Create card
@@ -71,9 +71,9 @@
       >
         Save
       </button>
-      <button v-on:click="onCancel" class="border-2 rounded-2xl ml-2">Cancel</button>
+      <button v-on:click="onCancel" class="border-2 rounded-2xl">Cancel</button>
     </div>
-    <hr />
+    <hr class="my-4" />
   </div>
 </template>
 
@@ -198,6 +198,9 @@ export default {
 <style scoped>
 * {
   margin-top: 0.5rem;
+}
+
+button {
   padding: 0.25rem;
 }
 

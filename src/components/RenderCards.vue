@@ -3,7 +3,7 @@
     {{ filterSelectionIsOpen ? 'close filter' : 'set filter' }}
   </button>
 
-  <div v-show="filterSelectionIsOpen">
+  <div class="my-2" v-show="filterSelectionIsOpen">
     <button class="border-2 rounded-2xl" @click="showCategories = !showCategories">
       {{ showCategories ? 'hide categories' : 'show categories' }}
     </button>
@@ -21,7 +21,7 @@
     >
       select none
     </button>
-    <div v-show="showCategories">
+    <div v-show="showCategories" class="flex gap-2 my-4">
       <div v-for="(value, category) in filter" :key="category">
         <input
           class="reset-input"
@@ -30,8 +30,9 @@
           v-model="filter[category]"
         />
         <label
+          class="p-2 border rounded-xl"
           :for="`filter-${category}`"
-          :class="{ 'border-2 rounded-xl bg-blue-600': filter[category] }"
+          :class="{ '  bg-blue-600': filter[category] }"
         >
           {{ category }}
         </label>
@@ -169,3 +170,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+button {
+  padding: 0.25rem;
+}
+</style>
