@@ -3,7 +3,7 @@
     {{ filterSelectionIsOpen ? 'close filter' : 'set filter' }}
   </button>
 
-  <div v-show="filterSelectionIsOpen">
+  <div class="my-2" v-show="filterSelectionIsOpen">
     <button class="border-2 rounded-2xl" @click="showCategories = !showCategories">
       {{ showCategories ? 'hide categories' : 'show categories' }}
     </button>
@@ -21,7 +21,7 @@
     >
       select none
     </button>
-    <div v-show="showCategories">
+    <div v-show="showCategories" class="flex gap-2 my-4">
       <div v-for="(value, category) in filter" :key="category">
         <input
           class="reset-input"
@@ -30,8 +30,9 @@
           v-model="filter[category]"
         />
         <label
+          class="p-2 border rounded-xl"
           :for="`filter-${category}`"
-          :class="{ 'border-2 rounded-xl bg-blue-600': filter[category] }"
+          :class="{ '  bg-blue-600': filter[category] }"
         >
           {{ category }}
         </label>
@@ -60,15 +61,16 @@
       :key="card.cardId"
     >
       <li
-        class="border mt-10 rounded-xl bg-light-navy flex justify-between transform duration-300 hover:scale-[101%] hover:shadow-around hover:shadow-blue-600"
+        class="p-4 prose border mt-10 rounded-xl bg-light-navy flex justify-between transform duration-300 hover:scale-[101%] hover:shadow-around hover:shadow-blue-600"
       >
         <div>
-          <span class="underline text-xl">{{ card.cardHeader }}</span>
-          <div style="white-space: pre-line">
-            {{
+          <h1 class="underline">{{ card.cardHeader }}</h1>
+          <div
+            style="white-space: pre-line"
+            v-html="
               card.cardText.length > 200 ? card.cardText.substring(0, 200) + '...' : card.cardText
-            }}
-          </div>
+            "
+          ></div>
           <span class="text-green-500">{{ card.category }}</span>
           <span class="text-purple-500">{{ card.cardId }}</span>
           <span class="text-blue-500">{{ card.timestamp }}</span>
@@ -170,15 +172,7 @@ export default {
 </script>
 
 <style scoped>
-* {
+button {
   padding: 0.25rem;
-}
-
-li {
-  margin-top: 1rem;
-}
-
-button:hover {
-  scale: 1.05;
 }
 </style>

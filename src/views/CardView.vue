@@ -5,16 +5,16 @@
 
   <create-card></create-card>
 
-  <section class="border rounded-xl bg-light-navy flex justify-between">
-    <div>
-      <span class="underline text-xl">{{ currentCard.cardHeader }}</span>
-      <div style="white-space: pre-line">{{ currentCard.cardText }}</div>
+  <section class="p-4 border rounded-xl bg-light-navy flex justify-between">
+    <div class="prose">
+      <h1 class="underline">{{ currentCard.cardHeader }}</h1>
+      <div style="white-space: pre-line" v-html="currentCard.cardText"></div>
       <span class="text-green-500">{{ currentCard.category }}</span>
       <span class="text-purple-500">{{ currentCard.cardId }}</span>
       <span class="text-blue-500">{{ currentCard.timestamp }}</span>
     </div>
 
-    <div class="flex-col">
+    <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -106,8 +106,10 @@ export default {
   }
 }
 </script>
+
 <style scoped>
-* {
+button {
   margin: 0.5rem;
+  border: 2px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <button
     v-show="enableCreateCard"
-    class="m-2 rounded-2xl border-2 border-call-to-action shadow-sm shadow-call-to-action text-call-to-action"
+    class="my-2 rounded-2xl border-2 border-call-to-action shadow-sm shadow-call-to-action text-call-to-action"
     @click="store.cardInputOpen = true"
   >
     Create card
@@ -11,17 +11,15 @@
   <div v-show="store.cardInputOpen">
     <input
       type="text"
-      id="card-header"
+      id="card-header "
       placeholder="card header"
-      class="border rounded-xl bg-light-navy focus:outline-double"
+      class="border text-3xl rounded-xl bg-light-navy focus:outline-double"
       v-model="inputCardHeader"
     />
-    <textarea
-      id="card-text"
-      placeholder="write down some text"
-      class="w-full h-40 border rounded-xl bg-light-navy focus:outline-double"
-      v-model="inputCardText"
-    ></textarea>
+
+    <div>
+      <text-editor v-model="inputCardText" />
+    </div>
 
     <div v-show="createCategory">
       <input
@@ -67,29 +65,34 @@
 
     <div>
       <button
-        v-show="inputCardText && inputCardCategory"
+        v-show="inputCardText && inputCardCategory && inputCardHeader"
         v-on:click="onSave"
-        class="border-2 border-call-to-action rounded-2xl"
+        class="rounded-2xl border-2 border-call-to-action shadow-sm shadow-call-to-action text-call-to-action"
       >
         Save
       </button>
-      <button v-on:click="onCancel" class="border-2 rounded-2xl ml-2">Cancel</button>
+      <button v-on:click="onCancel" class="border-2 rounded-2xl">Cancel</button>
     </div>
-    <hr />
+    <hr class="my-4" />
   </div>
 </template>
 
 <script>
 import useUserStore from '@/stores/users.js'
 import { mapActions } from 'pinia'
+import TextEditor from '@/components/TextEditor.vue'
 
 export default {
   name: 'CreateCard',
+  components: {
+    TextEditor
+  },
   setup() {
     return {
       store: useUserStore()
     }
   },
+
   data() {
     return {
       inputCardHeader: '',
@@ -97,7 +100,9 @@ export default {
       inputCardCategory: '',
       showCategories: false,
       createCategory: false,
-      inputCreateNewCategory: ''
+      inputCreateNewCategory: '',
+      editor: null,
+      content: '<p>A Vue.js wrapper component for tiptap to use <code>v-model</code>.</p>'
     }
   },
   watch: {
@@ -193,6 +198,9 @@ export default {
 <style scoped>
 * {
   margin-top: 0.5rem;
+}
+
+button {
   padding: 0.25rem;
 }
 
