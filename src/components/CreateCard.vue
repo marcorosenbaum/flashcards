@@ -65,7 +65,7 @@
 
     <div>
       <button
-        v-show="inputCardText && inputCardCategory"
+        v-show="inputCardText && inputCardCategory && inputCardHeader"
         v-on:click="onSave"
         class="rounded-2xl border-2 border-call-to-action shadow-sm shadow-call-to-action text-call-to-action"
       >
