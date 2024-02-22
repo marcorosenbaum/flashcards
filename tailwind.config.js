@@ -1,8 +1,25 @@
 /** @type {import('tailwindcss').Config} */
+import typography from '@tailwindcss/typography'
+
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-bullets': theme('colors.currentColor'),
+            '--tw-prose-counters': theme('colors.currentColor'),
+            color: 'currentColor',
+            h1: { color: 'currentColor', fontSize: '2rem' },
+            h2: { color: 'currentColor', fontSize: '1.5rem' },
+            code: 'currentColor',
+            strong: 'currentColor',
+            blockquote: { color: 'currentColor' },
+            maxWidth: ''
+          }
+        }
+      }),
       borderColor: {
         DEFAULT: '#36A2EB'
       },
@@ -41,6 +58,7 @@ export default {
       }
 
       addUtilities(newUtilities, ['responsive', 'hover'])
-    }
+    },
+    typography
   ]
 }

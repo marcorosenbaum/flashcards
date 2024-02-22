@@ -60,10 +60,10 @@
       :key="card.cardId"
     >
       <li
-        class="border mt-10 rounded-xl bg-light-navy flex justify-between transform duration-300 hover:scale-[101%] hover:shadow-around hover:shadow-blue-600"
+        class="p-4 prose border mt-10 rounded-xl bg-light-navy flex justify-between transform duration-300 hover:scale-[101%] hover:shadow-around hover:shadow-blue-600"
       >
         <div>
-          <span class="underline text-xl">{{ card.cardHeader }}</span>
+          <h1 class="underline">{{ card.cardHeader }}</h1>
           <div
             style="white-space: pre-line"
             v-html="
@@ -169,17 +169,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-* {
-  padding: 0.25rem;
-}
-
-li {
-  margin-top: 1rem;
-}
-
-button:hover {
-  scale: 1.05;
-}
-</style>

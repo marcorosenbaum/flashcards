@@ -11,14 +11,14 @@
   <div v-show="store.cardInputOpen">
     <input
       type="text"
-      id="card-header"
+      id="card-header "
       placeholder="card header"
-      class="border rounded-xl bg-light-navy focus:outline-double"
+      class="border text-3xl rounded-xl bg-light-navy focus:outline-double"
       v-model="inputCardHeader"
     />
 
     <div>
-      <editor v-model="inputCardText" />
+      <text-editor v-model="inputCardText" />
     </div>
 
     <div v-show="createCategory">
@@ -67,7 +67,7 @@
       <button
         v-show="inputCardText && inputCardCategory"
         v-on:click="onSave"
-        class="border-2 border-call-to-action rounded-2xl"
+        class="rounded-2xl border-2 border-call-to-action shadow-sm shadow-call-to-action text-call-to-action"
       >
         Save
       </button>
@@ -80,12 +80,12 @@
 <script>
 import useUserStore from '@/stores/users.js'
 import { mapActions } from 'pinia'
-import Editor from '@/components/Editor.vue'
+import TextEditor from '@/components/TextEditor.vue'
 
 export default {
   name: 'CreateCard',
   components: {
-    Editor
+    TextEditor
   },
   setup() {
     return {
