@@ -18,11 +18,12 @@
             <!-- <li>
               <a class="px-2 text-white" href="#">Manage</a>
             </li> -->
+            <p>{{ usersStore.userName }}</p>
             <li>
               <a class="px-2 text-white" href="#" @click.prevent="usersStore.signOut">Logout</a>
             </li>
-            <p>{{ usersStore.userName }}</p></template
-          >
+            <router-link :to="{ name: 'learn' }">Learn</router-link>
+          </template>
         </ul>
       </div>
     </nav>

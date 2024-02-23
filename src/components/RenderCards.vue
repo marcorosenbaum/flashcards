@@ -66,7 +66,6 @@
         <div>
           <h1 class="underline">{{ card.cardHeader }}</h1>
           <div
-            style="white-space: pre-line"
             v-html="
               card.cardText.length > 200 ? card.cardText.substring(0, 200) + '...' : card.cardText
             "
@@ -134,6 +133,7 @@ export default {
       }
     },
 
+    // rename filter to categories?
     renderFilteredMemoryCards() {
       const selectedFilter = []
       for (let filter in this.filter) {
