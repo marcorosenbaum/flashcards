@@ -4,7 +4,7 @@
     :key="rerenderChart"
     id="my-chart-id"
     :options="chartOptions"
-    :data="chartData"
+    :data="store.userLoggedIn ? chartData : welcomeChartData"
   />
   <hr />
 </template>
@@ -59,6 +59,41 @@ export default {
           {
             label: 'total cards',
             data: [],
+            fill: false,
+            borderColor: '#36A2EB',
+            backgroundColor: '#9BD0F5'
+          }
+        ]
+      },
+      welcomeChartData: {
+        labels: [
+          '01.02.24',
+          '02.02.24',
+          '03.02.24',
+          '04.02.24',
+          '05.02.24',
+          '06.02.24',
+          '07.02.24',
+          '08.02.24',
+          '09.02.24',
+          '10.02.24',
+          '11.02.24',
+          '12.02.24',
+          '13.02.24',
+          '14.02.24',
+          '15.02.24',
+          '16.02.24',
+          '17.02.24',
+          '18.02.24',
+          '19.02.24',
+          '20.02.24'
+        ],
+        color: '#d5d5d5',
+
+        datasets: [
+          {
+            label: 'total cards',
+            data: [1, 3, 4, 4, 4, 7, 7, 10, 11, 12, 14, 14, 14, 17, 17, 18, 20, 21, 22, 22],
             fill: false,
             borderColor: '#36A2EB',
             backgroundColor: '#9BD0F5'
