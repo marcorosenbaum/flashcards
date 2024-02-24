@@ -78,12 +78,13 @@ export default defineStore('users', {
     async signOut() {
       try {
         await auth.signOut()
+        this.userLoggedIn = false
         this.userName = ''
         this.cards = []
         this.categories = []
-        this.userLoggedIn = false
         this.totalCards = 0
         this.totalCreatedCards = 0
+        this.cardInputOpen = false
         this.cardToEdit = {}
 
         router.push({ name: 'home' })
