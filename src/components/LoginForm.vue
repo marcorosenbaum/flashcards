@@ -33,9 +33,18 @@
     <button
       type="submit"
       :disabled="login_in_submission"
-      class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700"
+      class="block w-full bg-green-500 text-white py-1.5 px-3 rounded transition hover:bg-green-700"
     >
       Submit
+    </button>
+
+    <button
+      type="button"
+      @click="cancel()"
+      :disabled="login_in_submission"
+      class="block w-full bg-red-500 text-white mt-2 py-1.5 px-3 rounded transition hover:bg-red-700"
+    >
+      Cancel
     </button>
   </vee-form>
 </template>
@@ -44,6 +53,7 @@
 import { mapActions } from 'pinia'
 import { mapWritableState } from 'pinia'
 import useUserStore from '@/stores/users.js'
+import useModalStore from '@/stores/modal.js'
 // import users from '@/stores/users.js'
 
 export default {
@@ -61,7 +71,8 @@ export default {
     }
   },
   computed: {
-    ...mapWritableState(useUserStore, ['userName'])
+    ...mapWritableState(useUserStore, ['userName', 'userLoggedIn']),
+    ...mapWritableState(useModalStore, ['isOpen'])
   },
   methods: {
     ...mapActions(useUserStore, ['authenticate']),
@@ -80,10 +91,14 @@ export default {
         this.login_alert_msg = 'Invalid login details.'
         return
       }
-
-      this.login_alert_variant = 'bg-green-500'
-      this.login_alert_msg = `Success! You are now logged in`
+      if (this.userLoggedIn) {
+        this.login_alert_variant = 'bg-green-500'
+        this.login_alert_msg = `Success! You are now logged in`
+      }
       window.location.reload()
+    },
+    cancel() {
+      this.isOpen = !this.isOpen
     }
   }
 }
