@@ -71,7 +71,7 @@ export default defineStore('users', {
         }
       } catch (error) {
         console.error('Error during authentication', error)
-        window.alert('Sorry, an error occured. Please try again.')
+        window.alert('Sorry, an error occured. Please try again.', error)
       }
     },
 
