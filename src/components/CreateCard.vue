@@ -21,26 +21,34 @@
       <text-editor v-model="inputCardText" />
     </div>
 
-    <div v-show="createCategory">
+    <div class="flex gap-2" v-show="createCategory">
       <input
         type="text"
-        placeholder="type in category name"
-        class="w-1/5 h-10 border"
+        placeholder="create category"
+        class="p-1 border rounded-xl bg-light-navy w-40"
         v-model.lazy="inputCreateNewCategory"
       />
-      <button @click="saveNewCategory()">save category</button>
+      <button
+        class="text-call-to-action border border-call-to-action rounded-xl"
+        @click="saveNewCategory()"
+      >
+        save category
+      </button>
+      <button class="border rounded-xl" @click="cancelCreateCategory" v-show="createCategory">
+        cancel
+      </button>
     </div>
 
     <button
       class="border text-gray-400 rounded-2xl block bg-light-navy"
-      v-show="!inputCardCategory && !createCategory"
+      v-show="!inputCardCategory && !createCategory && !showCategories"
       @click="showCategories = true"
     >
       select category
     </button>
 
     <p
-      class="rounded-xl border inline-block mr-2"
+      class="rounded-xl border inline-block mr-2 p-1"
       @click="showCategories = true"
       v-show="inputCardCategory && !showCategories"
     >
@@ -48,12 +56,12 @@
     </p>
 
     <div v-show="showCategories && !createCategory">
-      <ul>
-        <span class="border rounded-xl mr-2" @click="createCategory = true"
+      <ul class="flex">
+        <span class="p-1 border rounded-xl mr-2" @click="createCategory = true"
           >create new category..</span
         >
         <li
-          class="border rounded-xl mr-2 w-fit"
+          class="p-1 border rounded-xl mr-2 w-fit"
           @click="setInputCardCategory(category)"
           v-for="category in store.categories"
           :key="category"
@@ -148,6 +156,12 @@ export default {
 
         this.store.saveCategoriesToFirebase()
       }
+    },
+
+    cancelCreateCategory() {
+      this.inputCreateNewCategory = ''
+      this.createCategory = false
+      // this.showCategories = false
     },
 
     onSave() {
