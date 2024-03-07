@@ -87,7 +87,7 @@
           ></div>
 
           <span class="text-orange-300 mr-4">{{ card.category }}</span>
-          <!-- <span class="text-purple-500">{{ card.cardId }}</span> -->
+
           <span class="text-blue-500"
             >Date
             {{

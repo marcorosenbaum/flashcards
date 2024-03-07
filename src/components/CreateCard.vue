@@ -163,7 +163,6 @@ export default {
     cancelCreateCategory() {
       this.inputCreateNewCategory = ''
       this.createCategory = false
-      // this.showCategories = false
     },
 
     onSave() {
