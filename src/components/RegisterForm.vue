@@ -31,7 +31,7 @@
       <ErrorMessage name="email" class="text-red-600" />
     </div>
     <!-- Age -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label class="inline-block mb-2">Age</label>
       <vee-field
         name="age"
@@ -39,7 +39,7 @@
         class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
       />
       <ErrorMessage name="age" class="text-red-600"></ErrorMessage>
-    </div>
+    </div> -->
     <!-- Password -->
     <div class="mb-3">
       <label class="inline-block mb-2">Password</label>
@@ -65,7 +65,7 @@
       <ErrorMessage name="confirm_password" class="text-red-600" />
     </div>
     <!-- Country -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label class="inline-block mb-2">Country</label>
       <vee-field
         as="select"
@@ -78,9 +78,9 @@
         <option value="Antarctica">Antarctica</option>
       </vee-field>
       <ErrorMessage name="country" class="text-red-600" />
-    </div>
+    </div> -->
     <!-- TOS -->
-    <div class="mb-3 pl-6">
+    <!-- <div class="mb-3 pl-6">
       <vee-field
         name="tos"
         value="1"
@@ -88,8 +88,8 @@
         class="w-4 h-4 float-left -ml-6 mt-1 rounded"
       />
       <label class="inline-block">Accept terms of service</label>
-    </div>
-    <ErrorMessage name="tos" class="text-red-600" />
+    </div> -->
+    <!-- <ErrorMessage name="tos" class="text-red-600" /> -->
     <button
       type="submit"
       class="block w-full bg-green-500 text-white py-1.5 px-3 rounded transition hover:bg-green-700"
@@ -122,15 +122,15 @@ export default {
       schema: {
         name: 'required|min:3|max:100|alpha_spaces',
         email: 'required|min:3|max:100|email',
-        age: 'required|min_value:18|max_value:100',
+        // age: 'required|min_value:18|max_value:100',
         password: 'required|min:9|max:100|excluded:password',
-        confirm_password: 'passwords_mismatch:@password',
-        country: 'required|country_excluded:Antarctica',
-        tos: 'tos'
+        confirm_password: 'passwords_mismatch:@password'
+        // country: 'required|country_excluded:Antarctica',
+        // tos: 'tos'
       },
 
       userData: {
-        country: 'USA'
+        // country: 'USA'
       },
       reg_in_submission: false,
       reg_show_alert: false,

@@ -25,16 +25,16 @@
       <input
         type="text"
         placeholder="create category"
-        class="p-1 border rounded-xl bg-light-navy w-40"
+        class="p-1 border rounded-2xl bg-light-navy w-40 hover:scale-105"
         v-model.lazy="inputCreateNewCategory"
       />
       <button
-        class="text-call-to-action border border-call-to-action rounded-xl"
+        class="text-call-to-action border border-call-to-action rounded-2xl"
         @click="saveNewCategory()"
       >
         save category
       </button>
-      <button class="border rounded-xl" @click="cancelCreateCategory" v-show="createCategory">
+      <button class="border rounded-2xl" @click="cancelCreateCategory" v-show="createCategory">
         cancel
       </button>
     </div>

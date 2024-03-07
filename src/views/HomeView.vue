@@ -4,8 +4,8 @@
   <render-cards v-if="userLoggedIn"></render-cards>
 
   <div v-show="!userLoggedIn" class="mb-16">
-    <h1 class="text-3xl my-6">Welcome to Flashcards!</h1>
-    <!-- <p>Congratulations on taking the first step towards your learning journey!</p> -->
+    <h1 class="text-3xl text-call-to-action my-6">Welcome to Flashcards!</h1>
+
     <p>
       This is your personal flashcard collection, designed to empower your learning experience.
       Here, you can <span class="text-light-pink">create flashcards</span> for all the new and

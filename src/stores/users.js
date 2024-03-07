@@ -25,8 +25,7 @@ export default defineStore('users', {
         await usersCollection.doc(userCred.user.uid).set({
           name: values.name,
           email: values.email,
-          age: values.age,
-          country: values.country,
+
           cards: '',
           categories: '',
           totalCards: 0,
@@ -94,7 +93,6 @@ export default defineStore('users', {
       }
     },
 
-    // refactor need
     async saveCategoriesToFirebase() {
       try {
         const docRef = usersCollection.doc(auth.currentUser.uid)
