@@ -14,7 +14,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       // Add the module as an external dependency
-      external: ['vue-material-design-icons/trashCanOutline.vue']
+      external: [
+        'vue-material-design-icons/trashCanOutline.vue',
+        'vue-material-design-icons/FormatStrikeThrough.vue'
+      ]
     }
   }
 })
