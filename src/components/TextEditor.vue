@@ -132,11 +132,7 @@ export default {
 
   watch: {
     modelValue(value) {
-      // HTML
       const isSame = this.editor.getHTML() === value
-
-      // JSON
-      // const isSame = JSON.stringify(this.editor.getJSON()) === JSON.stringify(value)
 
       if (isSame) {
         return
@@ -156,11 +152,7 @@ export default {
       extensions: [StarterKit, Underline],
       content: this.modelValue,
       onUpdate: () => {
-        // HTML
         this.$emit('update:modelValue', this.editor.getHTML())
-
-        // JSON
-        // this.$emit('update:modelValue', this.editor.getJSON())
       }
     })
   },
@@ -172,7 +164,6 @@ export default {
 </script>
 
 <style scoped>
-/* Basic editor styles */
 button {
   margin: 0.5rem;
 }

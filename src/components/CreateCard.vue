@@ -47,13 +47,13 @@
       select category
     </button>
 
-    <p
-      class="rounded-xl border inline-block mr-2 p-1"
+    <button
+      class="rounded-2xl border inline-block mr-2 p-1"
       @click="showCategories = true"
       v-show="inputCardCategory && !showCategories"
     >
       {{ inputCardCategory }}
-    </p>
+    </button>
 
     <div v-show="showCategories && !createCategory">
       <ul class="flex">
@@ -163,7 +163,6 @@ export default {
     cancelCreateCategory() {
       this.inputCreateNewCategory = ''
       this.createCategory = false
-      // this.showCategories = false
     },
 
     onSave() {
@@ -216,13 +215,7 @@ export default {
   margin-top: 0.5rem;
 }
 
-/* button {
-  padding: 0.25rem;
-  color: #ffb0b0;
-  border-color: #ffb0b0;
+button {
+  min-width: 5rem;
 }
-
-button:hover {
-  scale: 1.05;
-} */
 </style>

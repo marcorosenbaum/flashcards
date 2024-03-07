@@ -4,25 +4,27 @@
   </button>
 
   <div class="my-2" v-show="filterSelectionIsOpen">
-    <button class="border-2 rounded-2xl" @click="showCategories = !showCategories">
+    <button class="border rounded-2xl" @click="showCategories = !showCategories">
       {{ showCategories ? 'hide categories' : 'show categories' }}
     </button>
-    <button
-      v-show="showCategories"
-      class="border-2 rounded-2xl ml-2"
-      @click="toggleAllNoneFilter(true)"
-    >
-      select all
-    </button>
-    <button
-      v-show="showCategories"
-      class="border-2 rounded-2xl ml-2"
-      @click="toggleAllNoneFilter(false)"
-    >
-      select none
-    </button>
-    <div v-show="showCategories" class="flex gap-2 my-4">
-      <div v-for="(value, category) in filter" :key="category">
+    <div class="mt-2">
+      <button
+        v-show="showCategories"
+        class="border rounded-2xl mr-2"
+        @click="toggleAllNoneFilter(true)"
+      >
+        select all
+      </button>
+      <button
+        v-show="showCategories"
+        class="border rounded-2xl"
+        @click="toggleAllNoneFilter(false)"
+      >
+        select none
+      </button>
+    </div>
+    <div v-show="showCategories" class="flex flex-wrap gap-2">
+      <div v-for="(value, category) in filter" :key="category" class="mt-4">
         <input
           class="reset-input"
           type="checkbox"
@@ -30,28 +32,40 @@
           v-model="filter[category]"
         />
         <label
-          class="p-2 border rounded-xl"
+          class="p-2 border border-orange-300 text-orange-300 rounded-2xl"
           :for="`filter-${category}`"
-          :class="{ '  bg-blue-600': filter[category] }"
+          :class="{
+            ' bg-orange-300': filter[category],
+            'text-black': filter[category],
+            'border-none': filter[category]
+          }"
         >
           {{ category }}
         </label>
       </div>
     </div>
 
-    <div class="">
-      <label for="startDate">Start Date:</label>
-      <input class="bg-light-navy border" type="date" id="startDate" v-model="filterStartDate" />
-
-      <label for="endDate">End Date:</label>
-      <input class="bg-light-navy border" type="date" id="endDate" v-model="filterEndDate" />
-      <button
-        class="rounded-2xl border-2 border-call-to-action ml-2"
-        @click="filterStartDate && filterEndDate ? renderFilteredMemoryCards() : null"
-      >
-        set date
-      </button>
+    <div class="flex flex-wrap">
+      <div class="mr-4 mt-4">
+        <label for="startDate">Start Date:</label>
+        <input
+          class="bg-light-navy border ml-2"
+          type="date"
+          id="startDate"
+          v-model="filterStartDate"
+        />
+      </div>
+      <div class="mt-4">
+        <label for="endDate">End Date:</label>
+        <input class="bg-light-navy border ml-2" type="date" id="endDate" v-model="filterEndDate" />
+      </div>
     </div>
+    <button
+      class="rounded-2xl border mt-4"
+      @click="filterStartDate && filterEndDate ? renderFilteredMemoryCards() : null"
+    >
+      set date
+    </button>
   </div>
 
   <ul>
@@ -62,7 +76,7 @@
       :key="card.cardId"
     >
       <li
-        class="p-4 prose border mt-10 rounded-xl bg-light-navy flex justify-between transform duration-300 hover:scale-[101%] hover:shadow-around hover:shadow-blue-600"
+        class="p-4 prose border my-4 rounded-xl bg-light-navy flex justify-between transform duration-300 hover:scale-[101%] hover:shadow-around hover:shadow-blue-600"
       >
         <div>
           <h1 class="underline">{{ card.cardHeader }}</h1>
@@ -73,10 +87,13 @@
           ></div>
 
           <span class="text-orange-300 mr-4">{{ card.category }}</span>
-          <!-- <span class="text-purple-500">{{ card.cardId }}</span> -->
-          <span class="text-blue-500">{{
-            card.timestamp.length > 10 ? card.timestamp.substring(0, 10) : card.timestamp
-          }}</span>
+
+          <span class="text-blue-500"
+            >Date
+            {{
+              card.timestamp.length > 10 ? card.timestamp.substring(0, 10) : card.timestamp
+            }}</span
+          >
         </div>
       </li>
     </router-link>

@@ -2,7 +2,6 @@
   <app-header></app-header>
   <app-auth></app-auth>
 
-  <!-- include router view here -->
   <router-view></router-view>
 </template>
 

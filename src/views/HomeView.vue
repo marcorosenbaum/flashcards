@@ -4,7 +4,7 @@
   <render-cards v-if="userLoggedIn"></render-cards>
 
   <div v-show="!userLoggedIn" class="mb-16">
-    <h1 class="text-3xl my-6 text-light-pink">Welcome to Flashcards!</h1>
+    <h1 class="text-3xl my-6">Welcome to Flashcards!</h1>
     <!-- <p>Congratulations on taking the first step towards your learning journey!</p> -->
     <p>
       This is your personal flashcard collection, designed to empower your learning experience.
@@ -20,7 +20,7 @@
         <p>That can be notes, bullet list, numbered lists, headings, code blocks and more.</p>
       </div>
       <div class="flex justify-between">
-        <span class="text-green-500">general Cards</span>
+        <span class="text-green-500">general cards</span>
 
         <span class="text-blue-500">01.02.2024</span>
       </div>
