@@ -1,6 +1,7 @@
 <template>
   <router-link v-show="Object.keys(store.cardToEdit).length === 0" :to="{ name: 'home' }">
-    <arrow-left size="30" class="text-orange-300"></arrow-left>
+    <!-- <arrow-left size="30" class="text-orange-300"></arrow-left> -->
+    go back
   </router-link>
 
   <create-card></create-card>
@@ -22,8 +23,10 @@
     </div>
 
     <div class="flex flex-col gap-6">
-      <delete-icon size="30" @click="deleteCard(currentCard)"></delete-icon>
-      <edit-icon size="30" @click="enableCardEdit(currentCard)"></edit-icon>
+      <!-- <delete-icon size="30" @click="deleteCard(currentCard)"></delete-icon>
+      <edit-icon size="30" @click="enableCardEdit(currentCard)"></edit-icon> -->
+      <p @click="deleteCard(currentCard)">delete</p>
+      <p @click="enableCardEdit(currentCard)">edit</p>
     </div>
   </section>
 </template>
@@ -31,9 +34,9 @@
 <script>
 import useUserStore from '@/stores/users.js'
 import CreateCard from '@/components/CreateCard.vue'
-import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
-import DeleteIcon from 'vue-material-design-icons/trashCanOutline.vue'
-import EditIcon from 'vue-material-design-icons/pencil.vue'
+// import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue'
+// import DeleteIcon from 'vue-material-design-icons/trashCanOutline.vue'
+// import EditIcon from 'vue-material-design-icons/pencil.vue'
 
 export default {
   name: 'CardView',
@@ -43,10 +46,10 @@ export default {
     }
   },
   components: {
-    CreateCard,
-    ArrowLeft,
-    DeleteIcon,
-    EditIcon
+    CreateCard
+    // ArrowLeft,
+    // DeleteIcon,
+    // EditIcon
   },
   data() {
     return {
