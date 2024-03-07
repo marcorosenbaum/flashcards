@@ -1,7 +1,7 @@
 <template>
   <button
     v-show="enableCreateCard"
-    class="my-2 rounded-2xl border-2 border-call-to-action shadow-sm shadow-call-to-action text-call-to-action"
+    class="my-4 rounded-2xl border border-call-to-action text-call-to-action"
     @click="store.cardInputOpen = true"
   >
     Create card
@@ -13,7 +13,7 @@
       type="text"
       id="card-header "
       placeholder="card header"
-      class="border text-3xl rounded-xl bg-light-navy focus:outline-double"
+      class="border p-1 text-2xl bg-light-navy focus:outline-double"
       v-model="inputCardHeader"
     />
 
@@ -57,16 +57,18 @@
 
     <div v-show="showCategories && !createCategory">
       <ul class="flex">
-        <span class="p-1 border rounded-xl mr-2" @click="createCategory = true"
-          >create new category..</span
-        >
-        <li
-          class="p-1 border rounded-xl mr-2 w-fit"
-          @click="setInputCardCategory(category)"
-          v-for="category in store.categories"
-          :key="category"
-        >
-          {{ category }}
+        <li>
+          <button class="border w-fit mr-2 rounded-2xl" @click="createCategory = true">
+            create new category..
+          </button>
+          <button
+            class="border rounded-2xl mr-2 min-w-20"
+            @click="setInputCardCategory(category)"
+            v-for="category in store.categories"
+            :key="category"
+          >
+            {{ category }}
+          </button>
         </li>
       </ul>
     </div>
@@ -75,11 +77,11 @@
       <button
         v-show="inputCardText && inputCardCategory && inputCardHeader"
         v-on:click="onSave"
-        class="rounded-2xl border-2 border-call-to-action shadow-sm shadow-call-to-action text-call-to-action"
+        class="rounded-2xl border border-call-to-action mr-2 text-call-to-action"
       >
         Save
       </button>
-      <button v-on:click="onCancel" class="border-2 rounded-2xl">Cancel</button>
+      <button v-on:click="onCancel" class="border rounded-2xl">Cancel</button>
     </div>
     <hr class="my-4" />
   </div>
@@ -214,11 +216,13 @@ export default {
   margin-top: 0.5rem;
 }
 
-button {
+/* button {
   padding: 0.25rem;
+  color: #ffb0b0;
+  border-color: #ffb0b0;
 }
 
 button:hover {
   scale: 1.05;
-}
+} */
 </style>

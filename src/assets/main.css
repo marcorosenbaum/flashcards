@@ -87,3 +87,13 @@ input[type='file'] {
     background-position: -4000px 0;
   }
 }
+
+button {
+  padding: 0.25rem;
+  color: #f0a15c;
+  border-color: #f0a15c;
+}
+
+button:hover {
+  scale: 1.05;
+}

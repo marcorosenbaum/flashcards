@@ -1,5 +1,5 @@
 <template>
-  <button class="border-2 rounded-2xl" @click="filterSelectionIsOpen = !filterSelectionIsOpen">
+  <button class="border rounded-2xl" @click="filterSelectionIsOpen = !filterSelectionIsOpen">
     {{ filterSelectionIsOpen ? 'close filter' : 'set filter' }}
   </button>
 
@@ -56,6 +56,7 @@
 
   <ul>
     <router-link
+      @click="store.cardInputOpen = false"
       :to="{ name: 'cardview', params: { id: card.cardId } }"
       v-for="card in filteredMemoryCards"
       :key="card.cardId"
@@ -70,9 +71,12 @@
               card.cardText.length > 200 ? card.cardText.substring(0, 200) + '...' : card.cardText
             "
           ></div>
-          <span class="text-green-500">{{ card.category }}</span>
-          <span class="text-purple-500">{{ card.cardId }}</span>
-          <span class="text-blue-500">{{ card.timestamp }}</span>
+
+          <span class="text-orange-300 mr-4">{{ card.category }}</span>
+          <!-- <span class="text-purple-500">{{ card.cardId }}</span> -->
+          <span class="text-blue-500">{{
+            card.timestamp.length > 10 ? card.timestamp.substring(0, 10) : card.timestamp
+          }}</span>
         </div>
       </li>
     </router-link>
@@ -174,5 +178,9 @@ export default {
 <style scoped>
 button {
   padding: 0.25rem;
+}
+
+button:hover {
+  scale: 1.05;
 }
 </style>

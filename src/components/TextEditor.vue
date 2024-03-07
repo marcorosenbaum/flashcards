@@ -77,7 +77,7 @@
       <block-quote-icon title="Block quote" />
     </button>
   </div>
-  <editor-content class="border-2 roundel-xl" :editor="editor" />
+  <editor-content class="border roundel-xl" :editor="editor" />
 </template>
 
 <script>
