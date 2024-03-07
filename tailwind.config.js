@@ -13,7 +13,7 @@ export default {
             color: 'currentColor',
             h1: { color: 'currentColor', fontSize: '2rem' },
             h2: { color: 'currentColor', fontSize: '1.5rem' },
-            code: 'currentColor',
+            code: { color: 'currentColor', whiteSpace: 'pre-wrap' },
             strong: 'currentColor',
             blockquote: { color: 'currentColor' },
             maxWidth: '',
@@ -39,7 +39,6 @@ export default {
       },
       boxShadow: {
         around: '0 0 5px 3px rgba(0, 0, 0, 0.2), 0 0 10px 1px rgba(0, 0, 0, 0.14)'
-        // Adjust the shadow values as needed to achieve the desired effect
       }
     }
   },

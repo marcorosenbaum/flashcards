@@ -1,7 +1,7 @@
 <template>
   <button
     v-show="enableCreateCard"
-    class="my-2 rounded-2xl border-2 border-call-to-action shadow-sm shadow-call-to-action text-call-to-action"
+    class="my-4 rounded-2xl border border-call-to-action text-call-to-action"
     @click="store.cardInputOpen = true"
   >
     Create card
@@ -13,7 +13,7 @@
       type="text"
       id="card-header "
       placeholder="card header"
-      class="border text-3xl rounded-xl bg-light-navy focus:outline-double"
+      class="border p-1 text-2xl bg-light-navy focus:outline-double"
       v-model="inputCardHeader"
     />
 
@@ -21,26 +21,34 @@
       <text-editor v-model="inputCardText" />
     </div>
 
-    <div v-show="createCategory">
+    <div class="flex gap-2" v-show="createCategory">
       <input
         type="text"
-        placeholder="type in category name"
-        class="w-1/5 h-10 border"
+        placeholder="create category"
+        class="p-1 border rounded-xl bg-light-navy w-40"
         v-model.lazy="inputCreateNewCategory"
       />
-      <button @click="saveNewCategory()">save category</button>
+      <button
+        class="text-call-to-action border border-call-to-action rounded-xl"
+        @click="saveNewCategory()"
+      >
+        save category
+      </button>
+      <button class="border rounded-xl" @click="cancelCreateCategory" v-show="createCategory">
+        cancel
+      </button>
     </div>
 
     <button
       class="border text-gray-400 rounded-2xl block bg-light-navy"
-      v-show="!inputCardCategory && !createCategory"
+      v-show="!inputCardCategory && !createCategory && !showCategories"
       @click="showCategories = true"
     >
       select category
     </button>
 
     <p
-      class="rounded-xl border inline-block mr-2"
+      class="rounded-xl border inline-block mr-2 p-1"
       @click="showCategories = true"
       v-show="inputCardCategory && !showCategories"
     >
@@ -48,17 +56,19 @@
     </p>
 
     <div v-show="showCategories && !createCategory">
-      <ul>
-        <span class="border rounded-xl mr-2" @click="createCategory = true"
-          >create new category..</span
-        >
-        <li
-          class="border rounded-xl mr-2 w-fit"
-          @click="setInputCardCategory(category)"
-          v-for="category in store.categories"
-          :key="category"
-        >
-          {{ category }}
+      <ul class="flex">
+        <li>
+          <button class="border w-fit mr-2 rounded-2xl" @click="createCategory = true">
+            create new category..
+          </button>
+          <button
+            class="border rounded-2xl mr-2 min-w-20"
+            @click="setInputCardCategory(category)"
+            v-for="category in store.categories"
+            :key="category"
+          >
+            {{ category }}
+          </button>
         </li>
       </ul>
     </div>
@@ -67,11 +77,11 @@
       <button
         v-show="inputCardText && inputCardCategory && inputCardHeader"
         v-on:click="onSave"
-        class="rounded-2xl border-2 border-call-to-action shadow-sm shadow-call-to-action text-call-to-action"
+        class="rounded-2xl border border-call-to-action mr-2 text-call-to-action"
       >
         Save
       </button>
-      <button v-on:click="onCancel" class="border-2 rounded-2xl">Cancel</button>
+      <button v-on:click="onCancel" class="border rounded-2xl">Cancel</button>
     </div>
     <hr class="my-4" />
   </div>
@@ -150,6 +160,12 @@ export default {
       }
     },
 
+    cancelCreateCategory() {
+      this.inputCreateNewCategory = ''
+      this.createCategory = false
+      // this.showCategories = false
+    },
+
     onSave() {
       if (this.inputCardHeader && this.inputCardCategory && this.inputCardText) {
         const timestamp = new Date().toISOString()
@@ -200,11 +216,13 @@ export default {
   margin-top: 0.5rem;
 }
 
-button {
+/* button {
   padding: 0.25rem;
+  color: #ffb0b0;
+  border-color: #ffb0b0;
 }
 
 button:hover {
   scale: 1.05;
-}
+} */
 </style>

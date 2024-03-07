@@ -5,10 +5,10 @@
 
   <create-card></create-card>
 
-  <section class="p-4 border rounded-xl bg-light-navy flex justify-between">
+  <section class="p-4 border flex-wrap rounded-xl bg-light-navy flex justify-between">
     <div class="prose">
       <h1 class="underline">{{ currentCard.cardHeader }}</h1>
-      <div style="white-space: pre-line" v-html="currentCard.cardText"></div>
+      <div v-html="currentCard.cardText"></div>
       <span class="text-green-500">{{ currentCard.category }}</span>
       <span class="text-purple-500">{{ currentCard.cardId }}</span>
       <span class="text-blue-500">{{ currentCard.timestamp }}</span>
