@@ -18,7 +18,7 @@ a {
   text-decoration: none;
 } */
 
-.text-orange {
+/* .text-orange {
   color: #f59e0b !important;
   fill: #f59e0b !important;
 }
@@ -27,9 +27,9 @@ a {
 .card .card-header .fas.text-orange {
   color: #ff5e3a;
   fill: #ff5e3a;
-}
+} */
 
-.introduction-bg {
+/* .introduction-bg {
   animation: slide 50s linear infinite;
   will-change: background-position;
   z-index: -1;
@@ -44,9 +44,9 @@ a {
   background-color: #20d862;
   border-color: #20d862;
   border-style: solid;
-}
+} */
 
-input[type='file'] {
+/* input[type='file'] {
   margin-top: 20px;
 }
 
@@ -63,9 +63,9 @@ input[type='file'] {
     transparent
   );
   animation: progress-bar-stripes 1s linear infinite;
-}
+} */
 
-.music-bg {
+/* .music-bg {
   animation: slide 50s linear infinite;
   will-change: background-position;
 }
@@ -86,7 +86,7 @@ input[type='file'] {
   100% {
     background-position: -4000px 0;
   }
-}
+} */
 
 button {
   padding: 0.25rem;
