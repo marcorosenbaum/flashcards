@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory(process.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -19,7 +20,8 @@ const router = createRouter({
       name: 'learn',
       component: () => import('../views/LearnView.vue')
     }
-  ]
+  ],
+  base: '/'
 })
 
 export default router
