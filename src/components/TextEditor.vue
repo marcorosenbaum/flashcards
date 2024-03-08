@@ -84,7 +84,7 @@
 import StarterKit from '@tiptap/starter-kit'
 import { Editor, EditorContent } from '@tiptap/vue-3'
 // import Underline from '@tiptap/extension-underline'
-import BoldIcon from 'vue-material-design-icons/FormatBold.vue'
+import BoldIcon from '../../node_modules/vue-material-design-icons/FormatBold.vue'
 // import ItalicIcon from 'vue-material-design-icons/FormatItalic.vue'
 // import StrikeThroughIcon from 'vue-material-design-icons/FormatStrikeThrough.vue'
 // import CodeTagsIcon from 'vue-material-design-icons/CodeTags.vue'
