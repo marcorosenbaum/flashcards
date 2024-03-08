@@ -1,6 +1,6 @@
 <template>
   <header id="header" class="border-b">
-    <nav class="container mx-auto flex justify-start items-center py-5 px-4">
+    <nav class="container mx-auto flex flex-wrap justify-start items-center py-5 px-4">
       <p class="text-call-to-action font-bold uppercase text-3xl mr-4" href="#">Flashcards</p>
 
       <div class="flex flex-grow items-center">
