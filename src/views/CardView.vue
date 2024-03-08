@@ -32,8 +32,8 @@
 import useUserStore from '@/stores/users.js'
 import CreateCard from '@/components/CreateCard.vue'
 import ArrowLeft from '../../node_modules/vue-material-design-icons/ArrowLeft.vue'
-import DeleteIcon from '../../node_modules/vue-material-design-icons/trashCanOutline.vue'
-import EditIcon from '../../node_modules/vue-material-design-icons/pencil.vue'
+import DeleteIcon from '../../node_modules/vue-material-design-icons/TrashCanOutline.vue'
+import EditIcon from '../../node_modules/vue-material-design-icons/Pencil.vue'
 
 export default {
   name: 'CardView',
