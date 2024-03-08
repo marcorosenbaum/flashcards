@@ -20,8 +20,7 @@ const router = createRouter({
       name: 'learn',
       component: () => import('../views/LearnView.vue')
     }
-  ],
-  base: '/'
+  ]
 })
 
 export default router

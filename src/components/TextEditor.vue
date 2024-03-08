@@ -1,5 +1,5 @@
 <template>
-  <div v-if="editor">
+  <!-- <div v-if="editor">
     <button
       @click="editor.chain().focus().toggleBold().run()"
       :disabled="!editor.can().chain().focus().toggleBold().run()"
@@ -76,43 +76,43 @@
     >
       <block-quote-icon title="Block quote" />
     </button>
-  </div>
+  </div> -->
   <editor-content class="border roundel-xl" :editor="editor" />
 </template>
 
 <script>
 import StarterKit from '@tiptap/starter-kit'
 import { Editor, EditorContent } from '@tiptap/vue-3'
-import Underline from '@tiptap/extension-underline'
-import BoldIcon from 'vue-material-design-icons/FormatBold.vue'
-import ItalicIcon from 'vue-material-design-icons/FormatItalic.vue'
-import StrikeThroughIcon from 'vue-material-design-icons/FormatStrikeThrough.vue'
-import CodeTagsIcon from 'vue-material-design-icons/CodeTags.vue'
-import UnderlineIcon from 'vue-material-design-icons/FormatUnderline.vue'
-import MinusIcon from 'vue-material-design-icons/Minus.vue'
-import CodeBlockIcon from 'vue-material-design-icons/CodeBlockTags.vue'
-import HeaderOneIcon from 'vue-material-design-icons/FormatHeader1.vue'
-import HeaderTwoIcon from 'vue-material-design-icons/FormatHeader2.vue'
-import BulletListIcon from 'vue-material-design-icons/FormatListBulleted.vue'
-import NumberListIcon from 'vue-material-design-icons/FormatListNumbered.vue'
-import BlockQuoteIcon from 'vue-material-design-icons/CommentQuoteOutline.vue'
+// import Underline from '@tiptap/extension-underline'
+// import BoldIcon from 'vue-material-design-icons/FormatBold.vue'
+// import ItalicIcon from 'vue-material-design-icons/FormatItalic.vue'
+// import StrikeThroughIcon from 'vue-material-design-icons/FormatStrikeThrough.vue'
+// import CodeTagsIcon from 'vue-material-design-icons/CodeTags.vue'
+// import UnderlineIcon from 'vue-material-design-icons/FormatUnderline.vue'
+// import MinusIcon from 'vue-material-design-icons/Minus.vue'
+// import CodeBlockIcon from 'vue-material-design-icons/CodeBlockTags.vue'
+// import HeaderOneIcon from 'vue-material-design-icons/FormatHeader1.vue'
+// import HeaderTwoIcon from 'vue-material-design-icons/FormatHeader2.vue'
+// import BulletListIcon from 'vue-material-design-icons/FormatListBulleted.vue'
+// import NumberListIcon from 'vue-material-design-icons/FormatListNumbered.vue'
+// import BlockQuoteIcon from 'vue-material-design-icons/CommentQuoteOutline.vue'
 
 export default {
   name: 'TextEditor',
   components: {
-    EditorContent,
-    BoldIcon,
-    ItalicIcon,
-    StrikeThroughIcon,
-    CodeTagsIcon,
-    UnderlineIcon,
-    MinusIcon,
-    CodeBlockIcon,
-    HeaderOneIcon,
-    HeaderTwoIcon,
-    BulletListIcon,
-    NumberListIcon,
-    BlockQuoteIcon
+    EditorContent
+    // BoldIcon,
+    // ItalicIcon,
+    // StrikeThroughIcon,
+    // CodeTagsIcon,
+    // UnderlineIcon,
+    // MinusIcon,
+    // CodeBlockIcon,
+    // HeaderOneIcon,
+    // HeaderTwoIcon,
+    // BulletListIcon,
+    // NumberListIcon,
+    // BlockQuoteIcon
   },
 
   props: {
@@ -149,7 +149,8 @@ export default {
           class: ' p-2 min-h-[12rem] outline-none prose'
         }
       },
-      extensions: [StarterKit, Underline],
+      // add Underline behind starterkit below
+      extensions: [StarterKit],
       content: this.modelValue,
       onUpdate: () => {
         this.$emit('update:modelValue', this.editor.getHTML())
