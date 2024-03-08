@@ -1,5 +1,5 @@
 <template>
-  <!-- <div v-if="editor">
+  <div v-if="editor">
     <button
       @click="editor.chain().focus().toggleBold().run()"
       :disabled="!editor.can().chain().focus().toggleBold().run()"
@@ -7,7 +7,7 @@
     >
       <bold-icon title="Bold" />
     </button>
-    <button
+    <!-- <button
       @click="editor.chain().focus().toggleItalic().run()"
       :disabled="!editor.can().chain().focus().toggleItalic().run()"
       :class="{ 'text-call-to-action': editor.isActive('italic') }"
@@ -75,8 +75,8 @@
       :class="{ 'text-call-to-action': editor.isActive('blockquote') }"
     >
       <block-quote-icon title="Block quote" />
-    </button>
-  </div> -->
+    </button> -->
+  </div>
   <editor-content class="border roundel-xl" :editor="editor" />
 </template>
 
@@ -84,7 +84,7 @@
 import StarterKit from '@tiptap/starter-kit'
 import { Editor, EditorContent } from '@tiptap/vue-3'
 // import Underline from '@tiptap/extension-underline'
-// import BoldIcon from 'vue-material-design-icons/FormatBold.vue'
+import BoldIcon from 'vue-material-design-icons/FormatBold.vue'
 // import ItalicIcon from 'vue-material-design-icons/FormatItalic.vue'
 // import StrikeThroughIcon from 'vue-material-design-icons/FormatStrikeThrough.vue'
 // import CodeTagsIcon from 'vue-material-design-icons/CodeTags.vue'
@@ -100,8 +100,8 @@ import { Editor, EditorContent } from '@tiptap/vue-3'
 export default {
   name: 'TextEditor',
   components: {
-    EditorContent
-    // BoldIcon,
+    EditorContent,
+    BoldIcon
     // ItalicIcon,
     // StrikeThroughIcon,
     // CodeTagsIcon,
