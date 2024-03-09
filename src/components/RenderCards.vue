@@ -32,11 +32,11 @@
           v-model="filter[category]"
         />
         <label
-          class="p-2 border border-orange-300 text-orange-300 text- rounded-2xl"
+          class="p-2 border border-orange-300 rounded-2xl"
           :for="`filter-${category}`"
           :class="{
-            ' bg-orange-300': filter[category],
-            'text-blue-950': filter[category]
+            'text-blue-950': filter[category],
+            ' bg-orange-300': filter[category]
           }"
         >
           {{ category }}
