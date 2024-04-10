@@ -4,12 +4,13 @@
     :key="rerenderChart"
     id="my-chart-id"
     :options="chartOptions"
-    :data="store.userLoggedIn ? chartData : welcomeChartData"
+    :data="userStore.userLoggedIn ? chartData : welcomeChartData"
   />
   <hr />
 </template>
 
 <script>
+import useCardStore from '@/stores/card.js'
 import useUserStore from '@/stores/users.js'
 
 import { Line as LineChart } from 'vue-chartjs'
@@ -42,7 +43,8 @@ export default {
   name: 'DataChart',
   setup() {
     return {
-      store: useUserStore()
+      cardStore: useCardStore(),
+      userStore: useUserStore()
     }
   },
 
@@ -183,9 +185,9 @@ export default {
     }
   },
   watch: {
-    'store.cards': {
+    'cardStore.cards': {
       handler() {
-        this.chartData.datasets[0].data = this.setChartData(this.store.cards)
+        this.chartData.datasets[0].data = this.setChartData(this.cardStore.cards)
 
         this.rerenderChart = !this.rerenderChart
       },
@@ -193,8 +195,8 @@ export default {
     }
   },
   created() {
-    if (this.store.cards.length > 0) {
-      this.chartData.datasets[0].data = this.setChartData(this.store.cards)
+    if (this.cardStore.cards.length > 0) {
+      this.chartData.datasets[0].data = this.setChartData(this.cardStore.cards)
     }
   }
 }

@@ -69,13 +69,13 @@
 
   <ul>
     <router-link
-      @click="store.cardInputOpen = false"
+      @click="cardStore.cardInputOpen = false"
       :to="{ name: 'cardview', params: { id: card.cardId } }"
       v-for="card in filteredMemoryCards"
       :key="card.cardId"
     >
       <li
-        class="p-4 prose border my-4 rounded-xl bg-light-navy flex justify-between transform duration-300 hover:scale-[101%] hover:shadow-around hover:shadow-blue-600"
+        class="p-4 prose border my-10 rounded-xl bg-light-navy flex justify-between transform duration-300 hover:scale-[101%] hover:shadow-around hover:shadow-blue-600"
       >
         <div>
           <h1 class="underline">{{ card.cardHeader }}</h1>
@@ -101,12 +101,14 @@
 
 <script>
 import useUserStore from '@/stores/users.js'
+import useCardStore from '@/stores/card.js'
 
 export default {
   name: 'RenderCard',
   setup() {
     return {
-      store: useUserStore()
+      userStore: useUserStore(),
+      cardStore: useCardStore()
     }
   },
   data() {
@@ -121,13 +123,13 @@ export default {
     }
   },
   watch: {
-    'store.categories': {
+    'cardStore.categories': {
       handler() {
-        this.store.categories.forEach((element) => (this.filter[element] = true))
+        this.cardStore.categories.forEach((element) => (this.filter[element] = true))
       },
       deep: true
     },
-    'store.cards': {
+    'cardStore.cards': {
       handler() {
         this.renderFilteredMemoryCards()
       },
@@ -143,8 +145,8 @@ export default {
 
   methods: {
     editCard(currentCard) {
-      this.store.cardInputOpen = true
-      this.store.cardToEdit = currentCard
+      this.cardStore.cardInputOpen = true
+      this.cardStore.cardToEdit = currentCard
     },
 
     toggleAllNoneFilter(value) {
@@ -162,7 +164,7 @@ export default {
         }
       }
       if (this.filterStartDate && this.filterEndDate) {
-        this.filteredMemoryCards = this.store.cards.filter((card) => {
+        this.filteredMemoryCards = this.cardStore.cards.filter((card) => {
           const formattedStartDate = new Date(this.filterStartDate)
           const formattedEndDate = new Date(this.filterEndDate)
           formattedEndDate.setDate(formattedEndDate.getDate() + 1)
@@ -176,7 +178,7 @@ export default {
           }
         })
       } else
-        this.filteredMemoryCards = this.store.cards.filter((card) =>
+        this.filteredMemoryCards = this.cardStore.cards.filter((card) =>
           selectedFilter.includes(card.category)
         )
       this.filteredMemoryCards.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
@@ -185,7 +187,7 @@ export default {
 
   // is this right? i want it only to get rendered when first created
   beforeMount() {
-    this.store.categories.forEach((element) => (this.filter[element] = true))
+    this.cardStore.categories.forEach((element) => (this.filter[element] = true))
     this.renderFilteredMemoryCards()
   }
 }
