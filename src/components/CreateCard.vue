@@ -2,13 +2,13 @@
   <button
     v-show="enableCreateCard"
     class="my-4 rounded-2xl border border-call-to-action text-call-to-action"
-    @click="store.cardInputOpen = true"
+    @click="cardStore.cardInputOpen = true"
   >
     Create card
   </button>
   <br />
 
-  <div v-show="store.cardInputOpen">
+  <div v-show="cardStore.cardInputOpen">
     <input
       type="text"
       id="card-header "
@@ -64,7 +64,7 @@
           <button
             class="border rounded-2xl mr-2 min-w-20"
             @click="setInputCardCategory(category)"
-            v-for="category in store.categories"
+            v-for="category in cardStore.categories"
             :key="category"
           >
             {{ category }}
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import useUserStore from '@/stores/users.js'
+import useCardStore from '@/stores/card.js'
 import { mapActions } from 'pinia'
 import TextEditor from '@/components/TextEditor.vue'
 
@@ -99,7 +99,7 @@ export default {
   },
   setup() {
     return {
-      store: useUserStore()
+      cardStore: useCardStore()
     }
   },
 
@@ -116,12 +116,12 @@ export default {
     }
   },
   watch: {
-    'store.cardToEdit': {
+    'cardStore.cardToEdit': {
       handler() {
-        if (this.store.cardToEdit) {
-          this.inputCardHeader = this.store.cardToEdit.cardHeader
-          this.inputCardText = this.store.cardToEdit.cardText
-          this.inputCardCategory = this.store.cardToEdit.category
+        if (this.cardStore.cardToEdit) {
+          this.inputCardHeader = this.cardStore.cardToEdit.cardHeader
+          this.inputCardText = this.cardStore.cardToEdit.cardText
+          this.inputCardCategory = this.cardStore.cardToEdit.category
         }
       }
     }
@@ -129,8 +129,8 @@ export default {
   computed: {
     enableCreateCard() {
       if (
-        !this.store.cardInputOpen &&
-        Object.keys(this.store.cardToEdit).length === 0 &&
+        !this.cardStore.cardInputOpen &&
+        Object.keys(this.cardStore.cardToEdit).length === 0 &&
         this.$route.name === 'home'
       ) {
         return true
@@ -138,7 +138,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(useUserStore, ['saveCardToFirebase', 'updateCardInStore']),
+    ...mapActions(useCardStore, ['saveCardToFirebase', 'updateCardInStore']),
 
     setInputCardCategory(category) {
       this.inputCardCategory = category
@@ -149,14 +149,14 @@ export default {
       if (this.inputCreateNewCategory) {
         const newCategoryName = this.inputCreateNewCategory
 
-        this.store.categories.push(newCategoryName)
+        this.cardStore.categories.push(newCategoryName)
 
         this.inputCardCategory = newCategoryName
         this.inputCreateNewCategory = ''
         this.createCategory = false
         this.showCategories = false
 
-        this.store.saveCategoriesToFirebase()
+        this.cardStore.saveCategoriesToFirebase()
       }
     },
 
@@ -169,8 +169,8 @@ export default {
       if (this.inputCardHeader && this.inputCardCategory && this.inputCardText) {
         const timestamp = new Date().toISOString()
 
-        if (Object.keys(this.store.cardToEdit).length === 0) {
-          this.store.createCard(
+        if (Object.keys(this.cardStore.cardToEdit).length === 0) {
+          this.cardStore.createCard(
             this.inputCardHeader,
             this.inputCardText,
             this.inputCardCategory,
@@ -181,8 +181,8 @@ export default {
             this.inputCardHeader,
             this.inputCardText,
             this.inputCardCategory,
-            this.store.cardToEdit.timestamp,
-            this.store.cardToEdit.cardId
+            this.cardStore.cardToEdit.timestamp,
+            this.cardStore.cardToEdit.cardId
           ),
             this.updateCardInStore(
               this.inputCardHeader,
@@ -193,7 +193,7 @@ export default {
             (this.inputCardText = ''),
             (this.inputCardCategory = '')
       }
-      this.store.cardInputOpen = false
+      this.cardStore.cardInputOpen = false
     },
 
     onCancel() {
@@ -203,8 +203,8 @@ export default {
       this.inputCardHeader = ''
       this.inputCardText = ''
       this.inputCardCategory = ''
-      this.store.cardToEdit = {}
-      this.store.cardInputOpen = false
+      this.cardStore.cardToEdit = {}
+      this.cardStore.cardInputOpen = false
     }
   }
 }

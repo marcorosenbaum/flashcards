@@ -1,5 +1,5 @@
 <template>
-  <router-link v-show="Object.keys(store.cardToEdit).length === 0" :to="{ name: 'home' }">
+  <router-link v-show="Object.keys(cardStore.cardToEdit).length === 0" :to="{ name: 'home' }">
     <arrow-left size="30" class="text-orange-300"></arrow-left>
   </router-link>
 
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import useCardStore from '@/stores/card.js'
 import useUserStore from '@/stores/users.js'
 import CreateCard from '@/components/CreateCard.vue'
 import ArrowLeft from '../../node_modules/vue-material-design-icons/ArrowLeft.vue'
@@ -39,7 +40,7 @@ export default {
   name: 'CardView',
   setup() {
     return {
-      store: useUserStore()
+      cardStore: useCardStore()
     }
   },
   components: {
@@ -55,7 +56,7 @@ export default {
   },
   computed: {
     currentCard() {
-      const currentCard = this.store.cards.find((card) => card.cardId == this.$route.params.id)
+      const currentCard = this.cardStore.cards.find((card) => card.cardId == this.$route.params.id)
 
       return currentCard || { error: 'Card not found' }
     }
@@ -63,8 +64,8 @@ export default {
   methods: {
     enableCardEdit(currentCard) {
       this.editCard = true
-      this.store.cardInputOpen = true
-      this.store.cardToEdit = currentCard
+      this.cardStore.cardInputOpen = true
+      this.cardStore.cardToEdit = currentCard
     },
     deleteCard(card) {
       if (
@@ -72,7 +73,7 @@ export default {
           "Are you sure you want to delete this card? It can't be restored afterwards."
         )
       ) {
-        this.store.deleteCardToFirebase(card)
+        this.cardStore.deleteCardToFirebase(card)
       }
     }
   },
