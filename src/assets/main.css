@@ -27,3 +27,9 @@ button:hover {
     font-size: 6px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  body {
+    margin: 0rem 1rem;
+  }
+}
