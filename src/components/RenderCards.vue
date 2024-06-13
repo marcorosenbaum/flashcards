@@ -1,25 +1,17 @@
 <template>
-  <button class="border rounded-2xl" @click="filterSelectionIsOpen = !filterSelectionIsOpen">
+  <button class="rounded-lg" @click="filterSelectionIsOpen = !filterSelectionIsOpen">
     {{ filterSelectionIsOpen ? 'close filter' : 'set filter' }}
   </button>
 
   <div class="my-2" v-show="filterSelectionIsOpen">
-    <button class="border rounded-2xl" @click="showCategories = !showCategories">
+    <button class="rounded-lg" @click="showCategories = !showCategories">
       {{ showCategories ? 'hide categories' : 'show categories' }}
     </button>
     <div class="mt-2">
-      <button
-        v-show="showCategories"
-        class="border rounded-2xl mr-2"
-        @click="toggleAllNoneFilter(true)"
-      >
+      <button v-show="showCategories" class="rounded-lg mr-2" @click="toggleAllNoneFilter(true)">
         select all
       </button>
-      <button
-        v-show="showCategories"
-        class="border rounded-2xl"
-        @click="toggleAllNoneFilter(false)"
-      >
+      <button v-show="showCategories" class="rounded-lg" @click="toggleAllNoneFilter(false)">
         select none
       </button>
     </div>
@@ -32,7 +24,7 @@
           v-model="filter[category]"
         />
         <label
-          class="p-2 border border-orange-300 rounded-2xl"
+          class="p-2 border border-orange-300 rounded-2xl cursor-pointer"
           :for="`filter-${category}`"
           :class="{
             'text-blue-950': filter[category],
@@ -60,7 +52,7 @@
       </div>
     </div>
     <button
-      class="rounded-2xl border mt-4"
+      class="rounded-lg mt-4"
       @click="filterStartDate && filterEndDate ? renderFilteredMemoryCards() : null"
     >
       set date
@@ -195,10 +187,6 @@ export default {
 
 <style scoped>
 button {
-  padding: 0.25rem;
-}
-
-button:hover {
-  scale: 1.05;
+  padding: 0.5rem;
 }
 </style>

@@ -13,13 +13,13 @@ a {
 }
 
 button {
-  padding: 0.25rem;
-  color: #f0a15c;
-  border-color: #f0a15c;
+  padding: 0.5rem;
+  color: #ffffff;
+  background-color: rgb(240, 161, 92, 0.8);
 }
 
 button:hover {
-  scale: 1.05;
+  background-color: rgb(240, 161, 92, 1);
 }
 
 @media screen and (max-width: 300px) {

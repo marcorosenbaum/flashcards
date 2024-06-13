@@ -1,7 +1,7 @@
 <template>
   <button
     v-show="enableCreateCard"
-    class="my-4 rounded-2xl border border-call-to-action text-call-to-action"
+    class="my-4 rounded-lg bg-call-to-action/80 hover:bg-call-to-action duration-300"
     @click="cardStore.cardInputOpen = true"
   >
     Create card
